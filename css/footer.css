@@ -1,0 +1,25 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.container-footer{
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* Set the fixed height of the footer here */
+  height: 115px;
+  background-color: #00a4d8;
+  color: #FFF;
+}
+
+.footer a{
+color: #FFF;
+}
+
+

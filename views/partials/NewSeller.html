@@ -1,0 +1,106 @@
+<!--
+//author: J. Robert
+//creation date: 01/03/2016
+//modification date: 18/08/2016
+-->
+		
+			<div class="box container" ng-controller="NewSellerCtrl">
+				<div class="row">
+					<div class="12u">	
+
+						<div class="quote-container">
+						  <i class="pin"></i>
+						  <blockquote class="note yellow">
+						    Estimated Income:
+						    <center>
+						    <span id="EstimatedPrice"> </span><span> {{ price }} <i class="fa fa-btc"></i></span>
+						</center>
+					
+						  </blockquote>
+						</div>
+
+						<FORM>
+							<label>Data type:</label>
+								<ul class="estimated-cost">
+								<li><div class="manufacturingswitch">
+								    <input type="checkbox" name="manufacturingswitch" class="manufacturingswitch-checkbox" id="mymanufacturingswitch" ng-model="manufacturing">
+								    <label class="manufacturingswitch-label" for="mymanufacturingswitch">
+								        <span class="manufacturingswitch-inner"></span>
+								        <span class="manufacturingswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+
+								<li><div class="mobilityswitch">
+								    <input type="checkbox" name="mobilityswitch" class="mobilityswitch-checkbox" id="mymobilityswitch" ng-model="mobility">
+								    <label class="mobilityswitch-label" for="mymobilityswitch">
+								        <span class="mobilityswitch-inner"></span>
+								        <span class="mobilityswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+								<li><div class="farmingswitch">
+								    <input type="checkbox" name="farmingswitch" class="farmingswitch-checkbox" id="myfarmingswitch" ng-model="farming">
+								    <label class="farmingswitch-label" for="myfarmingswitch">
+								        <span class="farmingswitch-inner"></span>
+								        <span class="farmingswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+
+								<li><div class="wearableswitch">
+								    <input type="checkbox" name="wearableswitch" class="wearableswitch-checkbox" id="mywearableswitch" ng-model="wearable">
+								    <label class="wearableswitch-label" for="mywearableswitch">
+								        <span class="wearableswitch-inner"></span>
+								        <span class="wearableswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+								<li><div class="livingswitch">
+								    <input type="checkbox" name="livingswitch" class="livingswitch-checkbox" id="mylivingswitch" ng-model="living">
+								    <label class="livingswitch-label" for="mylivingswitch">
+								        <span class="livingswitch-inner"></span>
+								        <span class="livingswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+								<li><div class="citiesswitch">
+								    <input type="checkbox" name="citiesswitch" class="citiesswitch-checkbox" id="mycitiesswitch" ng-model="cities">
+								    <label class="citiesswitch-label" for="mycitiesswitch">
+								        <span class="citiesswitch-inner"></span>
+								        <span class="citiesswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+
+								<li><div class="environmentswitch">
+								    <input type="checkbox" name="environmentswitch" class="environmentswitch-checkbox" id="myenvironmentswitch" ng-model="environment">
+								    <label class="environmentswitch-label" for="myenvironmentswitch">
+								        <span class="environmentswitch-inner"></span>
+								        <span class="environmentswitch-switch"></span>
+								    </label>
+									</div>
+								</li>
+							</ul>
+							<label>Number of data:</label>
+								<br>
+								<SELECT name="nom" size="1" width="300" style="width: 320px" ng-model="dataNumber"> <OPTION>0 - 10<OPTION>10 - 100<OPTION>100 - 1000<OPTION>>1000</SELECT>
+								<br> <br>
+							<label>Location:</label>
+							<br>
+								<input type="text" name="Location" placeholder="Where is your data located ?" width="300" style="width: 320px" ng-model="dataLocation"/>
+								<br>
+								<br>
+								<a ng-click="UpdateIncome()" class="btn">Estimate</a> 
+								<a href="errorLogin.php" class="btn">Continue <i class="fa fa-angle-double-right"></i></a>
+								<!--<h5> <a id="modal_trigger" href="#modal" class="btn"> Log in</a></h5>-->
+<!--<a href="#" class="btn">Continue <i class="fa fa-angle-double-right"></i></a>-->	
+						</FORM>
+					</div>
+				</div>
+			</div>		

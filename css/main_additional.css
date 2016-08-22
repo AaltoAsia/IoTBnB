@@ -1,0 +1,81 @@
+body {
+
+  padding-top: 50px; 
+}
+
+
+.container{
+ color: #3B5998; 
+ padding-bottom: 145px;
+}
+
+ul.estimated-cost {
+		cursor: default;
+		text-align: left;
+	}
+
+		ul.estimated-cost:last-child {
+			margin-bottom: 0;
+		}
+
+		ul.estimated-cost li {
+			display: inline-block;
+			padding: 0 0 0 0.1em;
+		}
+
+			ul.estimated-cost li:first-child {
+				padding: 0;
+			}
+
+		ul.estimated-cost.vertical li {
+			display: block;
+			padding: 1.5em 0 0 0;
+		}
+
+			ul.estimated-cost.vertical li:first-child {
+				padding: 0;
+			}		
+
+.map{
+height: 400px;
+}
+
+.nav-member{
+	
+	width: 80px;
+	color: white;
+}
+
+
+.nav-member ul li{
+	margin-top: 5px;
+}
+
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+
+.container-jstree{
+	min-height: 1px;
+}
+
+

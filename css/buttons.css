@@ -1,0 +1,382 @@
+
+/*Button ON/OFF that could be used anywhere */
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 60px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+/*Button Manufacturing that is used only on newSeller */
+
+.manufacturingswitch {
+    position: relative; width: 130px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.manufacturingswitch-checkbox {
+    display: none;
+}
+.manufacturingswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.manufacturingswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.manufacturingswitch-inner:before, .manufacturingswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.manufacturingswitch-inner:before {
+    content: "Manufacturing";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.manufacturingswitch-inner:after {
+    content: "Manufacturing";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.manufacturingswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 100px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.manufacturingswitch-checkbox:checked + .manufacturingswitch-label .manufacturingswitch-inner {
+    margin-left: 0;
+}
+.manufacturingswitch-checkbox:checked + .manufacturingswitch-label .manufacturingswitch-switch {
+    right: 0px; 
+}
+
+
+/*Button Mobility that is used only on newSeller */
+.mobilityswitch {
+    position: relative; width: 100px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.mobilityswitch-checkbox {
+    display: none;
+}
+.mobilityswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.mobilityswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.mobilityswitch-inner:before, .mobilityswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.mobilityswitch-inner:before {
+    content: "Mobility";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.mobilityswitch-inner:after {
+    content: "Mobility";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.mobilityswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.mobilityswitch-checkbox:checked + .mobilityswitch-label .mobilityswitch-inner {
+    margin-left: 0;
+}
+.mobilityswitch-checkbox:checked + .mobilityswitch-label .mobilityswitch-switch {
+    right: 0px; 
+}
+
+
+/*Button farming that is used only on newSeller */
+.farmingswitch {
+    position: relative; width: 100px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.farmingswitch-checkbox {
+    display: none;
+}
+.farmingswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.farmingswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.farmingswitch-inner:before, .farmingswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.farmingswitch-inner:before {
+    content: "Farming";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.farmingswitch-inner:after {
+    content: "Farming";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.farmingswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.farmingswitch-checkbox:checked + .farmingswitch-label .farmingswitch-inner {
+    margin-left: 0;
+}
+.farmingswitch-checkbox:checked + .farmingswitch-label .farmingswitch-switch {
+    right: 0px; 
+}
+
+
+/*Button wearable that is used only on newSeller */
+.wearableswitch {
+    position: relative; width: 100px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.wearableswitch-checkbox {
+    display: none;
+}
+.wearableswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.wearableswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.wearableswitch-inner:before, .wearableswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.wearableswitch-inner:before {
+    content: "Wearable";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.wearableswitch-inner:after {
+    content: "Wearable";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.wearableswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.wearableswitch-checkbox:checked + .wearableswitch-label .wearableswitch-inner {
+    margin-left: 0;
+}
+.wearableswitch-checkbox:checked + .wearableswitch-label .wearableswitch-switch {
+    right: 0px; 
+}
+
+
+/*Button living that is used only on newSeller */
+.livingswitch {
+    position: relative; width: 100px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.livingswitch-checkbox {
+    display: none;
+}
+.livingswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.livingswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.livingswitch-inner:before, .livingswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.livingswitch-inner:before {
+    content: "living";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.livingswitch-inner:after {
+    content: "living";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.livingswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.livingswitch-checkbox:checked + .livingswitch-label .livingswitch-inner {
+    margin-left: 0;
+}
+.livingswitch-checkbox:checked + .livingswitch-label .livingswitch-switch {
+    right: 0px; 
+}
+
+/*Button cities that is used only on newSeller */
+.citiesswitch {
+    position: relative; width: 100px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.citiesswitch-checkbox {
+    display: none;
+}
+.citiesswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.citiesswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.citiesswitch-inner:before, .citiesswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.citiesswitch-inner:before {
+    content: "cities";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.citiesswitch-inner:after {
+    content: "cities";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.citiesswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 70px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.citiesswitch-checkbox:checked + .citiesswitch-label .citiesswitch-inner {
+    margin-left: 0;
+}
+.citiesswitch-checkbox:checked + .citiesswitch-label .citiesswitch-switch {
+    right: 0px; 
+}
+
+
+/*Button environment that is used only on newSeller */
+.environmentswitch {
+    position: relative; width: 130px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.environmentswitch-checkbox {
+    display: none;
+}
+.environmentswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #224762; border-radius: 20px;
+}
+.environmentswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.environmentswitch-inner:before, .environmentswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.environmentswitch-inner:before {
+    content: "environment";
+    padding-left: 4px;
+    background-color: #33AA70; color: #FFFFFF;
+}
+.environmentswitch-inner:after {
+    content: "environment";
+    padding-right: 4px;
+    background-color: #D94D3E; color: #FFFFFF;
+    text-align: right;
+}
+.environmentswitch-switch {
+    display: block; width: 30px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 100px;
+    border: 2px solid #224762; border-radius: 20px;
+    transition: all 0.35s ease-in 0s; 
+}
+.environmentswitch-checkbox:checked + .environmentswitch-label .environmentswitch-inner {
+    margin-left: 0;
+}
+.environmentswitch-checkbox:checked + .environmentswitch-label .environmentswitch-switch {
+    right: 0px; 
+}
