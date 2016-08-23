@@ -13,9 +13,8 @@
 <a href="#/member">Member space</a>
 
   <div ng-isolate-app="ods-widgets">
-    
-   <!-- You have to add your ODS context-domain and you ODS context-apikey -->
-<ods-dataset-context  context="iotbnb"
+   
+<ods-dataset-context  context="iotbnb"  iotbnb-domain="biotope.opendatasoft.com" iotbnb-apikey="5677f3197edde5512e65fddbd752eca3056dee9e9693930f18bbb38f"
                      iotbnb-dataset="iot-bnb"
                      ng-controller="IoTBnBController">
     <div class="container">
@@ -158,7 +157,7 @@
     (function() {
       var mod = angular.module('ods-widgets');
 
-      mod.controller('IoTBnBController', ['$scope', function ($scope) {
+      mod.controller('IoTBnBController', ['$scope', "$location", function ($scope, $location) {
         $scope.selectedSources = {};
         $scope.cart = [];
 
@@ -171,7 +170,8 @@
         };
 
         $scope.fetchData = function () {
-          console.log('fetching');
+          $location.url('/fetchData');
+          //console.log('fetching');
         }
 
       }]);

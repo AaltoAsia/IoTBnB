@@ -75,7 +75,7 @@ $location.path('/');
           //auth.authenticate(store.get('profile'), token);
         }
       } else {
-        $location.path('/login');
+        //$location.path('/login');
         // Either show the login page
         // $location.path('/');
         // .. or
@@ -108,6 +108,8 @@ app.config(['$routeProvider', function ($routeProvider) {
       })
     //
     .when("/memberDashboard", {templateUrl: "views/partials/memberDashboard.html", controller: "PageCtrl"})
+    //
+    .when("/fetchData", {templateUrl: "views/partials/dataFetching.html", controller: "PageCtrl", requiresLogin: false})
     // else 404
     .otherwise("/404", {templateUrl: "views/partials/404.html", controller: "PageCtrl"});
 }]);

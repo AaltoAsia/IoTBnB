@@ -35,6 +35,7 @@ var vm = this;
             $scope.omiName =response.data.omiName;
             $scope.omiAddr =response.data.omiAddr;
             $scope.rootUrl = response.data.omiURL;
+            $scope.checkbox=true;
             //console.log($scope.rootUrl);
             //$location.path("/member");
           }

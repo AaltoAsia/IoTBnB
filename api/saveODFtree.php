@@ -47,7 +47,7 @@ $params = [
 
 $result = $client->update($params);
 
-$msg = array('stat' => '0', 'msg' => 'ODF tree updated !');
+$msg = array('stat' => '0', 'msg' => 'A message is sent to OpenDataSoft platform to take into account new services and store in your own database for visualisation purposes!');
 $json = $msg;
 header('content-type: application/json');
 echo json_encode($json);
