@@ -1,0 +1,2 @@
+var AUTH0_CLIENT_ID='TBD'; 
+var AUTH0_DOMAIN='TBD'; 

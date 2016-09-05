@@ -1,0 +1,77 @@
+<!-- Modal content -->
+<div class="modal-content" ng-controller="IoTBnBController">
+  
+  <div class="modal-header">
+    <h2>Cart</h2>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="row">
+
+
+	  		<ngcart-cart> </ngcart-cart>
+
+	</div>
+  <!--	
+        <div class="row">
+			
+			<h2 ng-show="cart.length != 0">
+                <i class="fa fa-shopping-cart" ></i>
+                DATA CART
+            </h2>
+             
+            <div class="ods-box cart" ng-show="cart.length != 0">
+	            <div id="table-wrapper" ng-show="cart.length != 0">
+                    <div id="table-scroll" ng-show="cart.length != 0">
+                        <table style="width: 90%;" align="center" ng-show="cart.length != 0">
+                            <tr>
+                                <th>ID</th>
+                                <th style="text-align:center">Price</th>
+                                <th style="text-align:center">Subscription Choice<th>
+                            </tr>
+                            <tr ng-repeat="item in cart">
+                            	<td>{{ item.fields.url }}Objects/{{item.fields.path}}
+                            	</td>
+
+                            	<td style="text-align:center">
+                                   {{priceItem}} <i class="fa fa-btc" aria-hidden="true"></i>
+                                </td>
+
+                            	<td style="text-align:center">
+                                   <SELECT name="nom" size="1" width="120" style="width: 120px" ng-change="changePrice(dataNumber2, item)" ng-model="dataNumber2" > <OPTION>Weekly<OPTION>Monthly<OPTION>Yearly</SELECT>
+                                </td>
+
+                            </tr>
+                         </table>
+                    </div>
+                </div>
+			</div>
+        </div>
+	</div>
+
+	<div class="modal-footer">
+    	<h2>TOTAL: {{ cartTotal }} <i class="fa fa-btc" aria-hidden="true"></i></h2>
+    	<br>
+    	<div class="row">
+                	<div class="col-xs-6 col-sm-10">
+                    </div>
+                    <div class="col-xs-6 col-sm-2"><button class="btn_red " ng-disabled="cart.length == 0"
+                      ng-show="cart.length != 0"ng-click="fetchData()">Buy Data</button>
+                    </div>
+                </div>
+	
+  	</div>
+	-->
+  </div> 
+  <div class="modal-footer">
+
+  	<div class="row">
+        <div class="col-xs-6 col-sm-10">
+        </div>
+        <div class="col-xs-6 col-sm-2"><button class="btn_red "ng-click="openBilling()">Buy Data</button>
+        </div>
+    </div>
+
+  </div>	
+</div>

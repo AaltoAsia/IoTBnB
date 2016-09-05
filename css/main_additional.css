@@ -78,4 +78,102 @@ height: 400px;
 	min-height: 1px;
 }
 
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:350px;
+  overflow:auto;  
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+    
+}
+#table-wrapper table * {
+  background:white;
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
 
+}
+
+.right {
+    position: absolute;
+    right: 0px;
+  }
+
+.cart {
+	border:1px solid black;
+}
+
+.container-popup {
+ color: #3B5998; 
+ padding-bottom: 145px;
+}
+
+.xml-code {
+  background-color:#E6E6E6;
+    margin: 2% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Could be more or less, depending on screen size */
+}
+
+
+* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 98%; /* Could be more or less, depending on screen size */
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #00a4d8;
+    color: white;
+}
+
+
+xmp{ 
+  margin: 1% auto;
+  white-space:pre-wrap; 
+  word-wrap:break-word; }
+
+
+.btnAdd {
+    background-color: #00a4d8; /* Green */
+    border: 1px solid;
+    outline:none;
+    color: white;
+    padding: 0px 0px;
+    width: 80px;
+    height: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+  

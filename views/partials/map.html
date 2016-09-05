@@ -1,22 +1,19 @@
 <!--
 //author: J. Robert
 //creation date: 01/03/2016
-//modified with: J. Morel
-//modification date: 18/08/2016
+//modified with: J. Morel (18/08/2016)
+//modification date: 05/09/2016
 -->
 
+<div class="container">
+  <a href="#/member">Member space</a>
 
-
-
-  <div class="container">
-
-<a href="#/member">Member space</a>
-
-  <div ng-isolate-app="ods-widgets">
+  <!--<div ng-isolate-app="ods-widgets"> -->
    
-<ods-dataset-context  context="iotbnb"  iotbnb-domain="biotope.opendatasoft.com" iotbnb-apikey="5677f3197edde5512e65fddbd752eca3056dee9e9693930f18bbb38f"
-                     iotbnb-dataset="iot-bnb"
-                     ng-controller="IoTBnBController">
+    <ods-dataset-context  context="iotbnb"  iotbnb-domain="{{odsDomain}}" iotbnb-apikey="{{odsKey}}"
+                       iotbnb-dataset="iot-bnb"
+                       >
+    
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -30,12 +27,14 @@
                 </h1>    
             </div>
         </div>
+        
         <div class="row">
             <div class="col-xs-12">
                 <ods-text-search placeholder="Search data..."
                                  context="iotbnb"></ods-text-search>
             </div>
         </div>
+
         <div class="row">
             <div class="col-xs-12">
                 <div class="ods-box">
@@ -44,6 +43,7 @@
                             <ods-filter-summary context="iotbnb"></ods-filter-summary>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-sm-4">
 
@@ -64,6 +64,7 @@
                             </ods-facets>
 
                         </div>
+                        
                         <div class="col-sm-8">
                             <h2>
                                 Location search
@@ -83,102 +84,93 @@
 
             <div class="row">
                 <div class="col-sm-12">
+
                     <h2>DATA SOURCES</h2>
+
                     <div class="ods-box">
 
+                       <!--<ods-table context="iotbnb" displayed-fields="{TYPE,URL,PATH}"></ods-table>-->
+                      <h4>Only the 100 first entries are shown. To refine your selection, please use the filters </h4>
+                      <div id="table-wrapper">
+                        <div id="table-scroll">
+                            <table ods-results="items"
+                                   ods-results-context="iotbnb"
+                                   ods-results-max="100"
+                                   show-hits-counter="false"
+                                   style="width: 100%;"> 
+                                   <!--<table ods-infinite-scroll-results="items" context="iotbnb">-->
+                                <tr> 
+                                    <th>Type</th>
+                                    <th>Root URL</th>
+                                    <th>OMI node Path</th>
+                                    <th style="text-align:center">Resource link</th>
+                                    <th style="text-align:center">Price</th>
+                                    <th style="text-align:center">Reputation</th>
+                                    <th style="text-align:center">Advanced Statistics</th>
+                                    <th></th>
+                                </tr>
+                                <tr ng-repeat="item in items">
+                                    <td>{{ item.fields.type }}</td>
+                                    <td>
+                                        <a href="{{ item.fields.url }}">
+                                            {{ item.fields.url }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ item.fields.path }}
+                                    </td>
+                                    <td style="text-align:center">
+                                        <a href="{{ item.fields.url }}Objects/{{ item.fields.path }}" target="_blank">
+                                            <i class="fa fa-external-link"></i>
+                                        </a>
+                                    </td>
 
-                        <table ods-results="items"
-                               ods-results-context="iotbnb"
-                               ods-results-max="20"
-                               show-hits-counter="false"
-                               style="width: 100%;">
-                            <tr>
-                                <th></th>
-                                <th>Type</th>
-                                <th>Root URL</th>
-                                <th>OMI node Path</th>
-                                <th style="text-align:center">Resource link</th>
-                            </tr>
-                            <tr ng-repeat="item in items">
-                                <td>
-                                    <input type="checkbox" 
-                                    ng-model="selectedSources[item.fields.url + item.fields.path]" 
-                                    ng-change="toggleItem(item)">
-                                </td>
-                                <td>{{ item.fields.type }}</td>
-                                <td>
-                                    <a href="{{ item.fields.url }}">
-                                        {{ item.fields.url }}
-                                    </a>
-                                </td>
-                                <td>
-                                    {{ item.fields.path }}
-                                </td>
-                                <td style="text-align:center">
-                                    <a href="{{ item.fields.url }}Objects/{{ item.fields.path }}">
-                                        <i class="fa fa-external-link"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
+                                    <td style="text-align:center">
+                                      {{ priceItemInit }} <i class="fa fa-btc" aria-hidden="true"></i>
+                                    </td>
+
+                                    <td style="text-align:center">
+                                        <!--<a href="" target="_blank">-->
+                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <!-- </a> -->
+                                    </td>
+
+                                    <td style="text-align:center">
+                                        <a href="" ng-click="clickToOpen(item)"> <!-- target="_blank" ng-click="clickToOpen()" #/AdvStat-->
+                                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+
+                                     <td>
+                                      <ngcart-addtocart id="{{ item.fields.path }}" name="{{ item.fields.path  }}" price="{{ priceItemInit }}" quantity="1" >Add to Cart</ngcart-addtocart>
+                                      <!--
+                                        <input type="checkbox" 
+                                        ng-model="selectedSources[item.fields.url + item.fields.path]" 
+                                        ng-change="toggleItem(item)">
+                                        -->
+                                    </td>
+                                </tr>
+                            </table>
+                          </div>
+                      </div>
+                </div> 
+                <br>
+              
+                    <div class="right"><button class="btn_red " 
+                      ng-click="openCart(item)" >Show Cart</button> <!-- ng-disabled="cart.length == 0"
+                      ng-show="cart.length != 0"-->
                     </div>
-                    <h2>
-                      <i class="fa fa-shopping-cart"></i>
-                      DATA CART
-
-                    </h2>
-                    <div class="ods-box">
-                      <button class="ods-button ods-button--primary" 
-                      ng-disabled="cart.length == 0"
-                      ng-click="fetchData()">
-                        Fetch data
-                      </button>
-                        <table                         style="width: 100%;">
-                            <tr>
-                                <th>ID</th>
-                                <th style="text-align:center">Resource link</th>
-                            </tr>
-                            <tr ng-repeat="item in cart">
-                              <td>{{ item.fields.url }}{{item.fields.path}}</td>
-                              <td></td>
-                            </tr>
-                          </table>
-                        </div>
-                </div>
+                       
             </div>
         </div>
     </div>
-</ods-dataset-context>
 
-  </div>
-
-  </div>
-  <script type="text/javascript">
-    (function() {
-      var mod = angular.module('ods-widgets');
-
-      mod.controller('IoTBnBController', ['$scope', "$location", function ($scope, $location) {
-        $scope.selectedSources = {};
-        $scope.cart = [];
-
-        $scope.toggleItem = function (item) {
-          if ($scope.selectedSources[item.fields.url + item.fields.path]) {
-            $scope.cart.push(item);
-          } else {
-            $scope.cart.splice($scope.cart.indexOf(item), 1);
-          }
-        };
-
-        $scope.fetchData = function () {
-          $location.url('/fetchData');
-          //console.log('fetching');
-        }
-
-      }]);
-    })();
-  </script>
+    </ods-dataset-context>
+  <!--</div>-->
+</div>
 
 
-
-
-<!--<div id="google-map" ng-controller="GoogleMapsCtrl"> </div>-->
+ 

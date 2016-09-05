@@ -1,3 +1,5 @@
+//modified by J. Robert -- 05/09/2016
+// delete image in the bottom of the map (unreachable)
 var ODSTileLayerMixin = {
     odsOptions: {
         basemap: null,
@@ -145,7 +147,7 @@ L.ODSTileLayer = L.TileLayer.extend({
             layerOptions = {
                 minZoom: 1,
                 maxZoom: 22,
-                attribution: !disableAttribution ? 'Tiles Courtesy of <a href="https://www.jawg.io" target="_blank">jawg</a> <img src="https://www.jawg.io/assets/images/favicon.png" width="16" height="16"> - Map data © <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors' : ''
+                attribution: !disableAttribution ? 'Tiles Courtesy of <a href="https://www.jawg.io" target="_blank">jawg</a> - Map data © <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors' : ''
             };
             L.TileLayer.prototype.initialize.call(this, jawgUrl, layerOptions);
         } else if (basemap.provider === 'custom') {

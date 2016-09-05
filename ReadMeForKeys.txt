@@ -1,4 +1,4 @@
-Add keys 
+Parameters for auth0 and ODS have to be defined in the following files:
 
-in js/app.js (for auth0)
-in views/partials/map.html (for ODS widget)
+js/auth0-variables.js
+js/ods-variables.js

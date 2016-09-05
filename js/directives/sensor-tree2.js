@@ -149,8 +149,8 @@ angular.module('IoTBnB')
             }
           }
         });
-      }, 10);
-}, 10);
+      }, 100);
+}, 100);
 
         function makeJsTree(data, rootUrl) {
           if (!data || !rootUrl) return null; //jshint ignore: line

@@ -1,7 +1,7 @@
 <!--
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 18/08/2016
+//modification date: 05/09/2016
 -->
 
          <nav class="navbar navbar-default navbar-fixed-top">
@@ -14,15 +14,12 @@
                     <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand" href="#/"> <img src="img/IoTBnB_Logo.png" alt=""  height="35"/></a>  
-                  <!--<a class="navbar-brand" href="#/">TBD</a>  IoTBnB --> 
                 </div>
-                <div id="navbar" class="navbar-collapse collapse" ng-controller="LoginController">
+                <div id="navbar" class="navbar-collapse collapse" >
                   <ul class="nav navbar-nav navbar-right">
                   <li><a href="#/seller">Become a seller</a></li>
-                  <!-- <li><a href="#/login">Log in</a></li>-->
-                  <li> <a ng-click="login()">Log in</a></li>
-                  <!-- <li> <a ng-click="signin()">Log in</a></li> -->
-                  <!-- <li><a href="#/member" ng-show="userName2" >MyAccount</a></li> -->
+                  <li> <a ng-if="!isAuthenticated" ng-click="login()">Log in</a></li>
+                  <li> <a ng-if="isAuthenticated" ng-click="logout()">Log out</a></li>
                   </ul>
                 </div>
               </div>  
@@ -31,6 +28,5 @@
         <div class="jumbotron">
 
         <h2>Welcome to IoTBnB</h2>
-            <!--<h2>Welcome to TBD</h2>-->
             <p>Publish, discover or bill amazing data over the world.</p>
         </div>

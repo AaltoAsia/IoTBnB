@@ -2,7 +2,7 @@
 
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 18/08/2016
+//modification date: 31/08/2016
 
 /**
  * @ngdoc function
@@ -12,15 +12,9 @@
  * Controller of the IoTBnB
  */
 angular.module('IoTBnB')
-	.controller('PageCtrl', function ($scope, $location, $http) {
-  //console.log("Page Controller reporting for duty.");
+	.controller('PageCtrl', function ($scope) {
 
-// $scope.userInfo = null;
- //console.log($scope.userInfo);
+    /* Add some code if needed, just for default pages (see app.js --> routes) */
 
-
-  // Activates Tooltips for Social Links
- /* $('.tooltip-social').tooltip({
-    selector: "a[data-toggle=tooltip]"
-  })*/
 });
+

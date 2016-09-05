@@ -2,7 +2,7 @@
 
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 18/08/2016
+//modification date: 05/09/2016
 
 /**
  * @ngdoc function
@@ -12,17 +12,9 @@
  * Controller of the IoTBnB
  */
  angular.module('IoTBnB')
- 	.controller("PrivateSpaceController", ["$rootScope","$scope", "$location", "$window", "auth", "$http", "omiMessage", "selectedTable", "valueConverter", function ($rootScope, $scope, $location, $window, auth, $http, omiMessage, selectedTable, valueConverter) {
-    //, "authenticationSvc"
+ 	.controller("PrivateSpaceController", ["$rootScope","$scope", "$location", "$window", "auth", "$http", "omiMessage", "selectedTable", "valueConverter", "$timeout", function ($rootScope, $scope, $location, $window, auth, $http, omiMessage, selectedTable, valueConverter, $timeout) {
 
-    //$scope.infoUser= $rootScope;
-    //$scope.rootUrl = "";
 var vm = this;
-
-//console.log(auth.profile.nickname)
-    $scope.userName2=auth.profile.nickname;
-    $scope.email=auth.profile.email;  
-     //$scope.rootUrl = "http://85.171.192.185:8080/Objects";
 
     vm.getProfile = function(username) {
       $http({
@@ -36,21 +28,21 @@ var vm = this;
             $scope.omiAddr =response.data.omiAddr;
             $scope.rootUrl = response.data.omiURL;
             $scope.checkbox=true;
-            //console.log($scope.rootUrl);
             //$location.path("/member");
           }
           else {
-            //$scope.omiURL =response.data.omiURL;
-            //$scope.omiName =response.data.omiName;
-            //$scope.omiAddr =response.data.omiAddr;
-            //var msg= " "+response.data.msg;
-            //$window.alert(msg);
+            var msg= " "+response.data.msg;
+            $window.alert(msg);
           }
 
     });
   }
 
-  vm.getProfile($scope.userName2);
+$timeout(function () {
+    $scope.userName2=auth.profile.nickname;
+    $scope.email=auth.profile.email;  
+    vm.getProfile($scope.userName2);
+}, 200);
     
 $scope.saveProfile = function(username, email, omiURL, omiName, omiAddr) {
       $http({
@@ -88,10 +80,6 @@ $scope.publish = function() {
 
     });
   }
-
-    $scope.logout = function () {
-      //ToDo if needed
-    };
 
     $scope.error = {
       show: false,

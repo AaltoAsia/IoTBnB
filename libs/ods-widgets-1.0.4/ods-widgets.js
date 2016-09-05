@@ -1,3 +1,4 @@
+//modified by J. Robert -- 05/09/2016
 /**
  * @ngdoc module
  * @name gettext
@@ -6913,7 +6914,8 @@ mod.directive('infiniteScroll', [
     var version = '1.0.4';
     //  Homepage: https://github.com/opendatasoft/ods-widgets
 
-    var mod = angular.module('ods-widgets', ['infinite-scroll', 'ngSanitize', 'gettext']);
+    //var mod = angular.module('IoTBnB', ['infinite-scroll', 'ngSanitize', 'gettext', 'ngStorage', 'ngDialog','ngCart']);
+        var mod = angular.module('IoTBnB');
 
     mod.provider('ODSWidgetsConfig', function() {
         /**
@@ -6977,7 +6979,7 @@ mod.directive('infiniteScroll', [
          *
          * @example
          * <pre>
-         *   var app = angular.module('ods-widgets').config(function(ODSWidgetsConfigProvider) {
+         *   var app = angular.module('IoTBnB');.config(function(ODSWidgetsConfigProvider) {
          *       ODSWidgetsConfig.setConfig({
          *           defaultDomain: '/myapi'
          *       });
@@ -7070,7 +7072,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.service('ODSAPI', ['$http', 'ODSWidgetsConfig', 'odsErrorService', function($http, ODSWidgetsConfig, odsErrorService) {
         /**
@@ -7195,7 +7197,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.factory('AggregationHelper', ['translate', function(translate) {
         var availableFunctions = [
@@ -7881,7 +7883,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.factory("colorScale", ['ODSWidgetsConfig', function(ODSWidgetsConfig) {
 
@@ -8088,7 +8090,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     "use strict";
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.provider('ODSCurrentDomain', [function() {
         /**
@@ -8103,7 +8105,7 @@ mod.directive('infiniteScroll', [
          *
          * @example
          * <pre>
-         *   var app = angular.module('ods-widgets').config(function(ODSCurrentDomainProvider) {
+         *   var app = angular.module('IoTBnB');.config(function(ODSCurrentDomainProvider) {
          *       ODSCurrentDomainProvider.setDomain('public');
          *   });
          * </pre>
@@ -8131,7 +8133,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.factory('MapHelper', ['ODSWidgetsConfig', 'ODSAPI', '$q', function(ODSWidgetsConfig, ODSAPI, $q) {
         var locationAccuracy = 5;
@@ -9194,7 +9196,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     var loading = {};
     var loaded = [];
@@ -9860,7 +9862,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     "use strict";
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.service('ValueDisplay', ['$filter', 'translate', function($filter, translate) {
         var valueFormatters = {
@@ -9905,7 +9907,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.filter('nofollow', function() {
         /**
@@ -11290,7 +11292,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsAggregation', ['ODSAPI', function(ODSAPI) {
         /**
@@ -11359,7 +11361,7 @@ mod.directive('infiniteScroll', [
         return false;
     };
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
 
     mod.directive('odsAnalysis', ['ODSAPI', function(ODSAPI) {
@@ -11864,7 +11866,7 @@ mod.directive('infiniteScroll', [
 (function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
     mod.directive("odsAnalyze", function (URLSynchronizer, $location, DebugLogger) {
         return {
             restrict: 'E',
@@ -11893,7 +11895,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     var autoResizeDefinition = ['$timeout', '$window', function($timeout, $window) {
         /**
@@ -11952,7 +11954,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
 	'use strict';
 
-	var mod = angular.module('ods-widgets');
+	var mod = angular.module('IoTBnB');
 
 	mod.directive('odsBreezometer', function() {
 		/**
@@ -12020,7 +12022,7 @@ mod.directive('infiniteScroll', [
 }());;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsCalendar', ['ODSAPI', 'ModuleLazyLoader', 'ODSWidgetsConfig', '$compile', 'URLSynchronizer',
         function (ODSAPI, ModuleLazyLoader, ODSWidgetsConfig, $compile, URLSynchronizer) {
@@ -12359,7 +12361,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsCatalogContext', ['ODSAPI', 'URLSynchronizer', '$interpolate', function(ODSAPI, URLSynchronizer, $interpolate) {
         /**
@@ -12487,7 +12489,7 @@ mod.directive('infiniteScroll', [
 }());;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsClearAllFilters', function () {
         /**
@@ -12535,7 +12537,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     var renderCard = function(transcludeService, scope, elem) {
         var datasetItem = elem.find('.dataset-item').first();
@@ -12735,7 +12737,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsDatasetContext', ['ODSAPI', '$q', '$interpolate', 'URLSynchronizer', function(ODSAPI, $q, $interpolate, URLSynchronizer) {
         /**
@@ -13000,7 +13002,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsDatetime', function() {
         /**
@@ -13040,7 +13042,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsDisqus', ['ODSWidgetsConfig', '$location', '$window', function(ODSWidgetsConfig, $location, $window) {
         /**
@@ -13087,7 +13089,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsDomainStatistics', ['ODSAPI', function(ODSAPI) {
         /**
@@ -13168,7 +13170,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsFacetResults', ['ODSAPI', function(ODSAPI) {
         /**
@@ -13252,7 +13254,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsFacets', ['$compile', 'translate', function($compile, translate) {
         /**
@@ -13826,7 +13828,7 @@ mod.directive('infiniteScroll', [
 ;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsFilterSummary', function () {
         /**
@@ -14006,7 +14008,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsRedirectIfNotLoggedIn', ['ODSWidgetsConfig', 'config',function(ODSWidgetsConfig, config) {
         /**
@@ -14030,7 +14032,7 @@ mod.directive('infiniteScroll', [
 }());
 ;(function () {
     'use strict';
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsGeoSearch', ['ModuleLazyLoader', 'ODSWidgetsConfig', function (ModuleLazyLoader, ODSWidgetsConfig) {
         /**
@@ -14140,7 +14142,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    angular.module('ods-widgets')
+    angular.module('IoTBnB')
         .directive('odsGeotooltip', ['$timeout', 'ModuleLazyLoader', 'ODSWidgetsConfig', function ($timeout, ModuleLazyLoader, ODSWidgetsConfig) {
             /**
              * @ngdoc directive
@@ -14324,7 +14326,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.factory("requestData", ['ODSAPI', '$q', 'ChartHelper', 'AggregationHelper', function(ODSAPI, $q, ChartHelper, AggregationHelper) {
         var buildTimescaleX = function(x, timescale) {
@@ -16340,7 +16342,7 @@ mod.directive('infiniteScroll', [
 ;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsHubspotForm', function () {
         var alreadyCreated = [];
@@ -16396,7 +16398,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     "use strict";
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsInfiniteScrollResults', function() {
         /**
@@ -16532,7 +16534,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsLastDatasetsFeed', ['ODSAPI', function(ODSAPI) {
         /**
@@ -16588,7 +16590,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsLastReusesFeed', ['ODSAPI', function(ODSAPI) {
         /**
@@ -16668,7 +16670,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsMapLegacy', ['ModuleLazyLoader', function(ModuleLazyLoader) {
         /**
@@ -17645,7 +17647,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     /*
     NOTE: There has been a change in terminology between Cartograph v1 and Cartograph v2 (current version); due to
@@ -18940,7 +18942,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsMediaGallery', ['$timeout', function($timeout) {
         /**
@@ -19504,7 +19506,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsMostPopularDatasets', ['ODSAPI', function(ODSAPI) {
         /**
@@ -19560,7 +19562,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsMostUsedThemes', ['ODSAPI', function(ODSAPI) {
         /**
@@ -19617,7 +19619,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsPaginationBlock', ['$location', function($location) {
         /**
@@ -19739,7 +19741,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsPicto', ['SVGInliner', '$http', '$document', function(SVGInliner, $http, $document) {
         /**
@@ -19854,7 +19856,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsPlumeAirQuality', function() {
         /**
@@ -19893,7 +19895,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsRecordImage', function() {
         /**
@@ -19947,7 +19949,7 @@ mod.directive('infiniteScroll', [
 }());;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     var refineOnClickDirective = function () {
         /**
@@ -20053,7 +20055,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsResultEnumerator', ['ODSAPI', function(ODSAPI) {
         /**
@@ -20128,7 +20130,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsResults', ['ODSAPI', function(ODSAPI) {
         /**
@@ -20226,7 +20228,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsReuses', ['ODSAPI', function(ODSAPI) {
         /**
@@ -20336,7 +20338,7 @@ mod.directive('infiniteScroll', [
 
 }());;(function() {
     'use strict';
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsSearchbox', function() {
         /**
@@ -20379,7 +20381,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsSocialButtons', [function() {
         /**
@@ -20457,7 +20459,7 @@ mod.directive('infiniteScroll', [
 ;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsSpinner', ['ODSWidgetsConfig', function (ODSWidgetsConfig) {
         /**
@@ -20508,7 +20510,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTable', ['ODSWidgetsConfig', '$sce', function(ODSWidgetsConfig, $sce) {
         /**
@@ -21222,7 +21224,7 @@ mod.directive('infiniteScroll', [
 }());;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTagCloud', ['ODSAPI', '$location', function (ODSAPI, $location) {
         /**
@@ -21395,7 +21397,7 @@ mod.directive('infiniteScroll', [
 
 }());;(function () {
     'use strict';
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTextSearch', function () {
         /**
@@ -21555,7 +21557,7 @@ mod.directive('infiniteScroll', [
 }());
 ;(function() {
     'use strict';
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsThemeBoxes', function() {
         /**
@@ -21591,7 +21593,7 @@ mod.directive('infiniteScroll', [
 
 }());;(function() {
     'use strict';
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTimerange', ['ModuleLazyLoader', function(ModuleLazyLoader) {
         /**
@@ -21854,7 +21856,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTimescale', function() {
         /**
@@ -21981,7 +21983,7 @@ mod.directive('infiniteScroll', [
 ;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsToggleModel', function() {
         /**
@@ -22111,7 +22113,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTopPublishers', ['ODSAPI', function(ODSAPI) {
         /**
@@ -22166,7 +22168,7 @@ mod.directive('infiniteScroll', [
 }());;(function () {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsTwitterTimeline', function () {
         /**
@@ -22215,7 +22217,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('inject', function(){
         // Thank you petebacondarwin: https://github.com/angular/angular.js/issues/7874#issuecomment-47647003
@@ -22278,7 +22280,7 @@ mod.directive('infiniteScroll', [
 }());;(function() {
     'use strict';
 
-    var mod = angular.module('ods-widgets');
+    var mod = angular.module('IoTBnB');
 
     mod.directive('odsWidgetTooltip', ['$rootScope', '$compile', function($rootScope, $compile) {
         /**
