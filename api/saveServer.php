@@ -6,8 +6,10 @@ require 'vendor/autoload.php';
 $data = file_get_contents("php://input");
 $dataJsonDecode = json_decode($data);
 $username = $dataJsonDecode->username;
-$email = $dataJsonDecode->email;
-
+//$email = $dataJsonDecode->email;
+$omiURL = $dataJsonDecode->omiURL;
+$omiName = $dataJsonDecode->omiName;
+$omiAddr = $dataJsonDecode->omiAddr;
 
 $client = Elasticsearch\ClientBuilder::create()->build();
 
@@ -40,7 +42,9 @@ $params = [
     'id' => $id,
     'body' => [
         'doc' => [
-            'email' => $email,
+            'omiURL' => $omiURL,
+            'omiName' => $omiName,
+            'omiAddr' => $omiAddr
         ]
     ]
 ];
@@ -53,29 +57,7 @@ $msg = array('stat' => '1', 'msg' => 'user updated !');
 }
 else {
 
-$params = array();
-$params['body']  = array(
-  'username' => $username,
-  'email' => $email,
-  'omiURL' => null,
-  'omiName' => null,
-  'omiAddr' => null
-);
 
-$params['index'] = 'iotbnb';
-$params['type']  = 'users';
-
-$result = $client->index($params);
-
-if ($result["created"]==true)
-{
-  $msg = array('stat' => '1', 'msg' => 'user added !');
-  
-} else
-{
- $err = 'Not created.';
- $msg = array('stat' => '0', 'msg' => $err); 
-}
   //$msg = array('stat' => '0', 'msg' => "Please, contact the administrator of the website");
 }
 

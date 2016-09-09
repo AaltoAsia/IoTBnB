@@ -16,6 +16,47 @@
 
 var vm = this;
 
+
+vm.getExistingToken = function(username) {
+      $http({
+      method: 'POST',
+      url: 'api/getExistingToken.php',
+      data: {'username': username}
+      }).then(function(response) {
+          if(response.data.stat==1){
+            $rootScope.Records = response.data.token;
+          }
+          else {
+            var msg= " "+response.data.msg;
+            $window.alert(msg);
+          }
+
+    });
+  }
+
+
+  vm.getExistingOdfTree = function(omiURL) {
+      $http({
+      method: 'POST',
+      url: 'api/getExistingOdfTree.php',
+      data: {'omiURL': omiURL}
+      }).then(function(response) {
+          if(response.data.stat==1){
+            //console.log(response.data.token);
+            $rootScope.odfTree = response.data.tree;
+            $scope.Selected_ODF_Data = $rootScope.odfTree;
+            //console.log($rootScope.odfTree);
+          }
+          else {
+            var msg= " "+response.data.msg;
+            $window.alert(msg);
+          }
+
+    });
+  }
+
+
+
     vm.getProfile = function(username) {
       $http({
       method: 'POST',
@@ -28,7 +69,6 @@ var vm = this;
             $scope.omiAddr =response.data.omiAddr;
             $scope.rootUrl = response.data.omiURL;
             $scope.checkbox=true;
-            //$location.path("/member");
           }
           else {
             var msg= " "+response.data.msg;
@@ -42,15 +82,21 @@ $timeout(function () {
     $scope.userName2=auth.profile.nickname;
     $scope.email=auth.profile.email;  
     vm.getProfile($scope.userName2);
-}, 200);
+    vm.getExistingToken($scope.userName2);
+}, 300);
+
+$timeout(function () {
+  //console.log($scope.omiURL);
+ vm.getExistingOdfTree($scope.omiURL);
+ }, 600);
     
-$scope.saveProfile = function(username, email, omiURL, omiName, omiAddr) {
+$scope.saveProfile = function(username, email) {
       $http({
       method: 'POST',
       url: 'api/saveProfile.php',
-      data: {'username': username, 'email': email, 'omiURL': omiURL, 'omiName': omiName, 'omiAddr': omiAddr}
+      data: {'username': username, 'email': email}
       }).then(function(response) {
-          if(response.data.test==1){
+          if(response.data.stat==1){
             //$location.path("/member");
           }
           else {
@@ -61,17 +107,32 @@ $scope.saveProfile = function(username, email, omiURL, omiName, omiAddr) {
     });
   }
 
+$scope.saveServer = function(omiURL, omiName, omiAddr) {
+      $http({
+      method: 'POST',
+      url: 'api/saveServer.php',
+      data: {'username': $scope.userName2, 'omiURL': omiURL, 'omiName': omiName, 'omiAddr': omiAddr}
+      }).then(function(response) {
+          if(response.data.stat==1){
+            //$location.path("/member");
+          }
+          else {
+            var msg= " "+response.data.msg;
+            $window.alert(msg);
+          }
+
+    });
+  }
+
+
 $scope.publish = function() {
-  console.log($scope.omiURL);
+  //console.log($scope.omiURL);
       $http({
       method: 'POST',
       url: 'api/saveODFtree.php',
       data: {'omiURL': $scope.omiURL, 'odfDATA': JSON.stringify($scope.Selected_ODF_Data)}
       }).then(function(response) {
           if(response.data.stat==1){
-            //console.log($scope.omiURL);
-            //console.log("it works");
-            //$location.path("/");
           }
           else {
             var msg= " "+response.data.msg;

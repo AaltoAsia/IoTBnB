@@ -2,7 +2,7 @@
 
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 05/09/2016
+//modification date: 09/09/2016
 
 /**
  * @ngdoc overview
@@ -26,6 +26,8 @@ var app = angular
 ]);
 
 app.config( function myAppConfig (authProvider) {
+
+
   //authProvider init configuration
   authProvider.init({
     domain: AUTH0_DOMAIN,
@@ -34,7 +36,8 @@ app.config( function myAppConfig (authProvider) {
 });
 
 //Called when login is successful
-authProvider.on('loginSuccess', ['$location', 'profilePromise', 'idToken', 'store','$rootScope', function($location, profilePromise, idToken, store, $rootScope) {
+authProvider.on('loginSuccess', ['$location', 'profilePromise', 'idToken', 'store','$rootScope', '$localStorage', function($location, profilePromise, idToken, store, $rootScope, $localStorage) {
+  //$rootScope.billing = false;
   // Successfully log in
   // Access to user profile and token
   profilePromise.then(function(profile){
@@ -43,7 +46,13 @@ authProvider.on('loginSuccess', ['$location', 'profilePromise', 'idToken', 'stor
     store.set('token', idToken);
     $rootScope.redirectModeProfile = profile;
   });
+  //console.log($localStorage.billing);
+  if ($localStorage.billing){
+$location.url('/billing');
+  }
+  else {
   $location.url('/member');
+}
 }]);
 
 //Called when login fails
@@ -118,11 +127,12 @@ app.config(['$routeProvider', function ($routeProvider) {
         })
     .when("/memberData", {templateUrl: "views/partials/memberData.html", controller: "PrivateSpaceController", requiresLogin: true
       })
-    .when("/memberDashboard", {templateUrl: "views/partials/memberDashboard.html", controller: "PageCtrl"})
-    .when("/fetchData", {templateUrl: "views/partials/dataFetching.html", controller: "PageCtrl", requiresLogin: false})
+    .when("/memberDashboard", {templateUrl: "views/partials/memberDashboard.html", controller: "DashboardCtrl", requiresLogin: true})
+    .when("/memberServerInfo", {templateUrl: "views/partials/memberServerInfo.html", controller: "PrivateSpaceController", requiresLogin: true})
+    .when("/memberWallet", {templateUrl: "views/partials/memberWallet.html", controller: "PageCtrl", requiresLogin: true})
     .when("/AdvStat", {templateUrl: "views/partials/AdvStat.html", controller: "PageCtrl", requiresLogin: false})
     .when("/cart", {templateUrl: "views/partials/cart.html", controller: "PageCtrl", requiresLogin: false})
-    .when("/billing", {templateUrl: "views/partials/cart.html", controller: "PageCtrl", requiresLogin: true})
+    .when("/billing", {templateUrl: "views/partials/billing.html", controller: "PageCtrl", requiresLogin: true})
     // else 404
     .otherwise("/404", {templateUrl: "views/partials/404.html", controller: "PageCtrl"});
 }]);

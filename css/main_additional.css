@@ -83,13 +83,21 @@ height: 400px;
 }
 #table-scroll {
   height:350px;
-  overflow:auto;  
+  overflow-x:hidden;  
   margin-top:20px;
+  word-wrap: break-word;
+
 }
 #table-wrapper table {
   width:100%;
     
 }
+
+#table-wrapper td, th {
+padding: 0px 5px;
+max-width: 450px; 
+    }
+
 #table-wrapper table * {
   background:white;
   color:black;
@@ -100,8 +108,43 @@ height: 400px;
   z-index:2;
   height:20px;
   width:35%;
+}
+
+
+#table-wrapper-token {
+  position:relative;
+}
+#table-scroll-token {
+  height:600px;
+  overflow-x:hidden;  
+  margin-top:20px;
+  word-wrap: break-word;
 
 }
+#table-wrapper-token table {
+  width:100%;
+    
+}
+
+#table-wrapper-token td, th {
+padding: 0px 5px;
+max-width: 450px; 
+    }
+
+#table-wrapper-token table * {
+  background:white;
+  color:black;
+}
+#table-wrapper-token table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+}
+
+
+
 
 .right {
     position: absolute;
@@ -156,6 +199,9 @@ height: 400px;
     color: white;
 }
 
+.modal-body {
+  color: black;
+}
 
 xmp{ 
   margin: 1% auto;

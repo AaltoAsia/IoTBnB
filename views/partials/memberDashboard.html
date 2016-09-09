@@ -1,39 +1,29 @@
 <!--
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 18/08/2016
+//modification date: 09/09/2016
 -->
 
 
 <div class="row">
-  <div class="col-sm-2">
-    <div class="sidebar-nav">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-xs navbar-brand">Member's menu</span>
-        </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#/member">Personal Information</a></li>
-            <li><a href="#/memberData">Your published data</a></li>
-            <li class="active"><a href="#/memberDashboard">Your dashboard</a></li>
-            <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-  </div>
-
   <div class="col-sm-10">
   	<div class="container">
     <!--Welcome to your private space !-->
 
+
+    <h4>Your Token: </h4>
+    <div id="table-wrapper-token">
+    <div id="table-scroll-token">
+      <table style="width: 90%;">
+        <tr> 
+          <th>Id</th>
+          <th>Token</th>
+        </tr>
+        <tr ng-repeat="item in Records">
+          <td>{{ item.id }}</td>
+          <td>{{ item.token }}</td>
+        </tr>
+        </table>  
 
 </div>
   </div>

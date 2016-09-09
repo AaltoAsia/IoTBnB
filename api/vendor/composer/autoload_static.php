@@ -20,6 +20,10 @@ class ComposerStaticInitc66e2c31f94e9df50e9ae40d27269474
             'GuzzleHttp\\Stream\\' => 18,
             'GuzzleHttp\\Ring\\' => 16,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'E' => 
         array (
             'Elasticsearch\\' => 14,
@@ -38,6 +42,10 @@ class ComposerStaticInitc66e2c31f94e9df50e9ae40d27269474
         'GuzzleHttp\\Ring\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Elasticsearch\\' => 
         array (

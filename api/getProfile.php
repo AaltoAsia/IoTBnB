@@ -18,7 +18,7 @@ $params = [
     'body' => [
         'query' => [
             'match' => [
-                'name' => $username
+                'username' => $username
             ]
         ]
     ]
@@ -34,7 +34,7 @@ $msg = array('stat' => '1', 'username' => $username, 'email' => $response["hits"
   'omiAddr' => $response["hits"]["hits"][0]["_source"]["omiAddr"], );
 }
 else {
-$err = 'Unknown account. Please, retry to log in or sign up.';
+$err = 'Unknown account. Please, save your profile.';
 $msg = array('stat' => '0', 'msg' => $err);
 }
 

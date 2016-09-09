@@ -7,8 +7,6 @@
 
 <div class="container">
   <a href="#/member">Member space</a>
-
-  <!--<div ng-isolate-app="ods-widgets"> -->
    
     <ods-dataset-context  context="iotbnb"  iotbnb-domain="{{odsDomain}}" iotbnb-apikey="{{odsKey}}"
                        iotbnb-dataset="iot-bnb"
@@ -106,13 +104,13 @@
                                     <th style="text-align:center">Resource link</th>
                                     <th style="text-align:center">Price</th>
                                     <th style="text-align:center">Reputation</th>
-                                    <th style="text-align:center">Advanced Statistics</th>
+                                    <th style="text-align:center">Overview</th> <!-- Advanced Statistics -->
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="item in items">
                                     <td>{{ item.fields.type }}</td>
                                     <td>
-                                        <a href="{{ item.fields.url }}">
+                                        <a href="{{ item.fields.url }}" target="_blank">
                                             {{ item.fields.url }}
                                         </a>
                                     </td>
@@ -125,32 +123,69 @@
                                         </a>
                                     </td>
 
-                                    <td style="text-align:center">
-                                      {{ priceItemInit }} <i class="fa fa-btc" aria-hidden="true"></i>
+                                    <td style="text-align:center"> {{ stats[item.fields.url + "Objects/" + item.fields.path]["price"] }} <!-- {{ priceItemInit }} -->
+                                       <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['billing']=='BTC'"><i class="fa fa-btc" aria-hidden="true"></i></span>
                                     </td>
 
                                     <td style="text-align:center">
-                                        <!--<a href="" target="_blank">-->
-                                            <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                            </i><i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <!-- </a> -->
+
+                                        <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==0">
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+
+                                        <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==1">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+
+                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==2">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+
+                                          <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==3">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+                                                                               
+                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==4">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </span>
+
+                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==5">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
                                     </td>
 
                                     <td style="text-align:center">
-                                        <a href="" ng-click="clickToOpen(item)"> <!-- target="_blank" ng-click="clickToOpen()" #/AdvStat-->
+                                        <a href="" ng-click="clickToOpen(item)"> 
                                             <i class="fa fa-line-chart" aria-hidden="true"></i>
                                         </a>
                                     </td>
 
                                      <td>
                                       <ngcart-addtocart id="{{ item.fields.path }}" name="{{ item.fields.path  }}" price="{{ priceItemInit }}" quantity="1" >Add to Cart</ngcart-addtocart>
-                                      <!--
-                                        <input type="checkbox" 
-                                        ng-model="selectedSources[item.fields.url + item.fields.path]" 
-                                        ng-change="toggleItem(item)">
-                                        -->
                                     </td>
                                 </tr>
                             </table>
@@ -160,7 +195,7 @@
                 <br>
               
                     <div class="right"><button class="btn_red " 
-                      ng-click="openCart(item)" >Show Cart</button> <!-- ng-disabled="cart.length == 0"
+                      ng-click="openCart()" >Show Cart</button> <!-- ng-disabled="cart.length == 0"
                       ng-show="cart.length != 0"-->
                     </div>
                        
@@ -169,7 +204,6 @@
     </div>
 
     </ods-dataset-context>
-  <!--</div>-->
 </div>
 
 

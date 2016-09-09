@@ -1,7 +1,7 @@
 <!--
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 05/09/2016
+//modification date: 09/09/2016
 -->
 
          <nav class="navbar navbar-default navbar-fixed-top">
@@ -17,9 +17,27 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" >
                   <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#/seller">Become a seller</a></li>
-                  <li> <a ng-if="!isAuthenticated" ng-click="login()">Log in</a></li>
-                  <li> <a ng-if="isAuthenticated" ng-click="logout()">Log out</a></li>
+                    <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" ng-if="isAuthenticated">Seller</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#/memberServerInfo">Server Information</a></li>
+                        <li><a href="#/memberData">Published data</a></li>
+                      </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" ng-if="isAuthenticated">Buyer</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#/memberDashboard">Dashboard</a></li>
+                        <!--<li><a href="#">ToDO</a></li>-->
+                      </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown" ng-if="isAuthenticated">Profile</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#/member">Personal information</a></li>
+                        <li><a href="#/memberWallet">Wallet information</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#/seller" ng-if="!isAuthenticated">Become a seller</a></li>
+                    <li> <a ng-if="!isAuthenticated" ng-click="login()">Log in</a></li>
+                    <li> <a ng-if="isAuthenticated" ng-click="logout()">Log out</a></li>
                   </ul>
                 </div>
               </div>  
