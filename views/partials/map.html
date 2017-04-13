@@ -6,16 +6,16 @@
 -->
 
 <div class="container">
-  <a href="#/member">Member space</a>
+  <!--<a href="#/member">Member space</a>-->
    
     <ods-dataset-context  context="iotbnb"  iotbnb-domain="{{odsDomain}}" iotbnb-apikey="{{odsKey}}"
-                       iotbnb-dataset="iot-bnb"
+                       iotbnb-dataset="iotbnb-v2"
                        >
     
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <a href="https://biotope.opendatasoft.com/explore/dataset/iot-bnb/" 
+                <a href="https://biotope.opendatasoft.com/explore/dataset/iotbnb-v2/" 
                    class="pull-right">
                     Source data
                 </a>
@@ -68,7 +68,7 @@
                                 Location search
                             </h2>
                             
-                            <ods-map>
+                            <ods-map style="height: 10%;">
                                 <ods-map-layer context="iotbnb" 
                                                refine-on-click-context="iotbnb"
                                                refine-on-click-iotbnb-map-field="type"
@@ -85,19 +85,24 @@
 
                     <h2>DATA SOURCES</h2>
 
-                    <div class="ods-box">
 
+
+                    <div class="ods-box">
+     
+                     <!--<ods-table context="iotbnb"></ods-table>-->       
                        <!--<ods-table context="iotbnb" displayed-fields="{TYPE,URL,PATH}"></ods-table>-->
                       <h4>Only the 100 first entries are shown. To refine your selection, please use the filters </h4>
                       <div id="table-wrapper">
-                        <div id="table-scroll">
+                        <!--<div id="table-scroll"> -->
                             <table ods-results="items"
                                    ods-results-context="iotbnb"
-                                   ods-results-max="100"
+                                   ods-results-max="15"
                                    show-hits-counter="false"
                                    style="width: 100%;"> 
                                    <!--<table ods-infinite-scroll-results="items" context="iotbnb">-->
                                 <tr> 
+                                    
+
                                     <th>Type</th>
                                     <th>Root URL</th>
                                     <th>OMI node Path</th>
@@ -123,13 +128,13 @@
                                         </a>
                                     </td>
 
-                                    <td style="text-align:center"> {{ stats[item.fields.url + "Objects/" + item.fields.path]["price"] }} <!-- {{ priceItemInit }} -->
-                                       <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['billing']=='BTC'"><i class="fa fa-btc" aria-hidden="true"></i></span>
+                                    <td style="text-align:center"> {{ item.fields.price }} <!-- {{ priceItemInit }} -->
+                                       <span ng-if="item.fields.Billing==BTC"><i class="fa fa-btc" aria-hidden="true"></i></span>
                                     </td>
 
                                     <td style="text-align:center">
 
-                                        <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==0">
+                                        <span ng-if="item.fields.reputation==0">
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -137,7 +142,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                        <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==1">
+                                        <span ng-if="item.fields.reputation==1">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -145,7 +150,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==2">
+                                         <span ng-if="item.fields.reputation==2">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -153,7 +158,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                          <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==3">
+                                          <span ng-if="item.fields.reputation==3">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -161,7 +166,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
                                                                                
-                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==4">
+                                         <span ng-if="item.fields.reputation==4">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -169,7 +174,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                         <span ng-if="stats[item.fields.url + 'Objects/' + item.fields.path]['reputation']==5">
+                                         <span ng-if="item.fields.reputation==5">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -185,12 +190,17 @@
                                     </td>
 
                                      <td>
-                                      <ngcart-addtocart id="{{ item.fields.path }}" name="{{ item.fields.path  }}" price="{{ priceItemInit }}" quantity="1" >Add to Cart</ngcart-addtocart>
+                                      <ngcart-addtocart id="{{ item.fields.url+'Objects/'+item.fields.path }}" name="{{ item.fields.url+'Objects/'+item.fields.path  }}" price="{{ item.fields.price }}" quantity="1" >Add to Cart</ngcart-addtocart>
                                     </td>
                                 </tr>
                             </table>
-                          </div>
-                      </div>
+                            <ods-pagination-block
+                               context="iotbnb"
+                               per-page="15"
+                               nofollow="true">
+                            </ods-pagination-block>
+                        </div>
+                        <!--  </div> -->
                 </div> 
                 <br>
               

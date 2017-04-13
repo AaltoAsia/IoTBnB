@@ -1,138 +1,111 @@
-//'use strict'
+(function () {
 
-//author: J. Robert
-//creation date: 01/03/2016
-//modification date: 09/09/2016
+  'use strict';
 
-/**
- * @ngdoc overview
- * @name IoTBnB
- * @description
- * # IoTBnB
- *
- * Main module of the application.
- */
+  angular
+    .module('IoTBnB', ['auth0.lock', 'angular-jwt', 'ui.router','ngMap',
+  'ngDialog','infinite-scroll', 'ngSanitize', 'gettext','ngCart', 'ui.bootstrap'])
+    .config(config);
 
-var app = angular
-.module('IoTBnB', [
-  'auth0', 'angular-storage', 'angular-jwt',
-  'ngRoute', 
-  'ngMap',
-  'ngDialog',
-  'infinite-scroll', 'ngSanitize', 'gettext',
-  'ngStorage',
-  'ngCart'//,
-  //'ods-widgets'
-]);
+  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
 
-app.config( function myAppConfig (authProvider) {
+  function config($stateProvider, lockProvider, $urlRouterProvider) {
 
-
-  //authProvider init configuration
-  authProvider.init({
-    domain: AUTH0_DOMAIN,
-    clientID: AUTH0_CLIENT_ID,
-    loginUrl: '/login' // matches login url
-});
-
-//Called when login is successful
-authProvider.on('loginSuccess', ['$location', 'profilePromise', 'idToken', 'store','$rootScope', '$localStorage', function($location, profilePromise, idToken, store, $rootScope, $localStorage) {
-  //$rootScope.billing = false;
-  // Successfully log in
-  // Access to user profile and token
-  profilePromise.then(function(profile){
-    // profile
-    store.set('profile', profile);
-    store.set('token', idToken);
-    $rootScope.redirectModeProfile = profile;
-  });
-  //console.log($localStorage.billing);
-  if ($localStorage.billing){
-$location.url('/billing');
-  }
-  else {
-  $location.url('/member');
-}
-}]);
-
-//Called when login fails
-authProvider.on('loginFailure', function() {
-  // If anything goes wrong
-$location.path('/');
-});
-
-//authProvider.on('authenticated', function($location, $rootScope) {
-  // if user is authenticated.
-  // Useful in re-authentication
-  //console.log("yy")
-  //$rootScope.redirectModeProfile =store.get('profile');
-  //console.log($rootScope.redirectModeProfile);
-  //$location.url('/member');
-//});
-
-}).run(['$rootScope', 'auth', 'store', 'jwtHelper', '$location', function($rootScope, auth, store, jwtHelper, $location) {
-  // Listen to a location change event
-  $rootScope.$on('$locationChangeStart', function() {
-    // Grab the user's token
-    var token = store.get('token');
-    //console.log(token);
-    // Check if token was actually stored
-    if (token) {
-      // Check if token is yet to expire
-      if (!jwtHelper.isTokenExpired(token)) {
-        // Check if the user is not authenticated
-        if (!auth.isAuthenticated) {
-          auth.authenticate(store.get('profile'), token).then(function(profile){
-            $rootScope.redirectModeProfile = profile;
-            $location.url('/member');
-          })
-          // Re-authenticate with the user's profile
-          // Calls authProvider.on('authenticated')
-          //auth.authenticate(store.get('profile'), token);
-        }
-      } else {
-        //$location.path('/login');
-        // Either show the login page
-         //$location.path('/');
-        // .. or
-        // or use the refresh token to get a new idToken
-        auth.refreshIdToken(token);
-      }
-    }
-  });
-
-$rootScope.login = function(){
-    auth.signin();
-  }
-
-$rootScope.logout = function(){
-    auth.signout();
-    store.set('profile',"");
-    store.set('token',"");
-    //store.remove('token');
-    $location.url('/');
-  }
-}])
-
-/**
- * Configure the Routes
- */
-app.config(['$routeProvider', function ($routeProvider) {
-  $routeProvider
-    // Home
-    .when("/", {templateUrl: "views/partials/map.html", controller: "IoTBnBController", requiresLogin: false})
-    .when("/seller", {templateUrl: "views/partials/NewSeller.html", controller: "PageCtrl", requiresLogin: false})
-    .when("/login", {templateUrl: "views/partials/login.html", controller: "LoginController", requiresLogin: false})
-    .when("/member", {templateUrl: "views/partials/member.html", controller: "PrivateSpaceController", requiresLogin: true
-        })
-    .when("/memberData", {templateUrl: "views/partials/memberData.html", controller: "PrivateSpaceController", requiresLogin: true
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        controller: 'IoTBnBController',
+        templateUrl: 'views/partials/map.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
       })
-    .when("/memberDashboard", {templateUrl: "views/partials/memberDashboard.html", controller: "DashboardCtrl", requiresLogin: true})
-    .when("/memberServerInfo", {templateUrl: "views/partials/memberServerInfo.html", controller: "PrivateSpaceController", requiresLogin: true})
-    .when("/memberWallet", {templateUrl: "views/partials/memberWallet.html", controller: "PageCtrl", requiresLogin: true})
-    .when("/AdvStat", {templateUrl: "views/partials/AdvStat.html", controller: "PageCtrl", requiresLogin: false})
-    .when("/cart", {templateUrl: "views/partials/cart.html", controller: "PageCtrl", requiresLogin: false})
-    .when("/billing", {templateUrl: "views/partials/billing.html", controller: "PageCtrl", requiresLogin: true})
-    // else 404
-    .otherwise("/404", {templateUrl: "views/partials/404.html", controller: "PageCtrl"});
-}]);
+      .state('login', {
+        url: '/login',
+        controller: 'LoginController',
+        templateUrl: 'views/partials/login.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+      .state('logout', {
+        url: '/logout',
+        controller: 'LogoutController',
+        templateUrl: 'views/partials/logout.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+      .state('seller', {
+        url: '/seller',
+        controller: 'PageCtrl',
+        templateUrl: 'views/partials/NewSeller.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+      .state('member', {
+        url: '/member',
+        controller: 'PrivateSpaceController',
+        templateUrl: 'views/partials/member.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+       .state('memberData', {
+        url: '/memberData',
+        controller: 'PrivateSpaceController',
+        templateUrl: 'views/partials/memberData.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+        .state('memberDashboard', {
+        url: '/memberDashboard',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/partials/memberDashboard.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+        .state('memberServerInfo', {
+        url: '/memberServerInfo',
+        controller: 'PrivateSpaceController',
+        templateUrl: 'views/partials/memberServerInfo.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+         .state('memberWallet', {
+        url: '/memberWallet',
+        controller: 'PrivateSpaceController',
+        templateUrl: 'views/partials/memberWallet.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+      .state('AdvStat', {
+        url: '/AdvStat',
+        controller: 'PageCtrl',
+        templateUrl: 'views/partials/AdvStat.html',
+        controllerAs: 'vm',
+        redirectUrl: 'home'
+      })
+        .state('cart', {
+        url: '/cart',
+        controller: 'PageCtrl',
+        templateUrl: 'views/partials/cart.html',
+        controllerAs: 'vm',
+        redirectUrl: 'billing'
+      })
+           .state('billing', {
+        url: '/billing',
+        controller: 'PageCtrl',
+        templateUrl: 'views/partials/billing.html',
+        controllerAs: 'vm',
+        redirectUrl: 'billing'
+      })  ;
+
+    lockProvider.init({
+      clientID: AUTH0_CLIENT_ID,
+      domain: AUTH0_DOMAIN
+    });
+
+    $urlRouterProvider.when("", "home")
+    //.otherwise('/home');
+
+      
+  }
+
+})();

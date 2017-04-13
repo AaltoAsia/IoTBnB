@@ -1,2 +1,2 @@
-var ODS_DOMAIN = 'TBD';
-var ODS_APIKEY = 'TBD';
+var ODS_DOMAIN = '';
+var ODS_APIKEY = '';

@@ -1,14 +1,11 @@
-<!--
+<?php
 //author: J. Robert
 //creation date: 09/09/2016
 //modification date: 09/09/2016
--->
 
-<?php
 //use \Firebase\JWT\JWT;
 require 'vendor/autoload.php';
 use \Firebase\JWT\JWT;
-
 
 $data = file_get_contents("php://input");
 $dataJsonDecode = json_decode($data);
@@ -47,7 +44,7 @@ for($i = 0; $i < $max;$i++)
 $msg = array('stat' => '1', 'token' => $idT); 
 }
 else{
-$msg = array('stat' => '0', 'token' => null); 
+$msg = array('stat' => '1', 'token' => null); 
 }
 
 //$msg = array('stat' => '1', 'id' => $idT, 'token' => $tokenArray); 

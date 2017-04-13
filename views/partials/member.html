@@ -17,13 +17,13 @@
           <h5>Member information</h5>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" type="text" name='username' placeholder="{{redirectModeProfile.nickname}}" ng-model="userName2" readonly/>  <!-- ng-model="userName"  placeholder="{{userInfo.userName}}"-->        
+            <input class="form-control" type="text" name='username' placeholder="{{vm.nickname}}" ng-model="userName2" readonly/>  <!-- ng-model="userName"  placeholder="{{userInfo.userName}}"-->        
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input class="form-control" type="text" name='email' placeholder="{{redirectModeProfile.email}}" ng-model="email" readonly/>     <!-- ng-model="email" -->
+            <input class="form-control" type="text" name='email' placeholder="{{vm.email}}" ng-model="email" readonly/>     <!-- ng-model="email" -->
           </div>
-          <div class="last"><a ng-click="saveProfile(userName2, email)" class="btn">Save</a></div>
+          <!--<div class="last"><a ng-click="saveProfile(vm.nickname, email)" class="btn">Save</a></div>-->
         </form> 
       </div> 
 

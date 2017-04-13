@@ -1,2 +1,2 @@
-var AUTH0_CLIENT_ID='TBD'; 
-var AUTH0_DOMAIN='TBD'; 
+var AUTH0_CLIENT_ID=''; 
+var AUTH0_DOMAIN=''; 

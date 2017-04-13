@@ -1,9 +1,9 @@
-<!--
+<?php
+
 //author: J. Robert
 //creation date: 09/09/2016
 //modification date: 09/09/2016
--->
-<?php
+
 //use \Firebase\JWT\JWT;
 require 'vendor/autoload.php';
 use \Firebase\JWT\JWT;

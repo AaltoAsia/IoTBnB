@@ -19728,7 +19728,7 @@ mod.directive('infiniteScroll', [
                         $scope.$watch('context.parameters.start', function(newValue, oldValue) {
                             if ($scope.context.nhits && $scope.perPage)
                                 buildPages();
-                            $anchorScroll();
+                            //$anchorScroll();
                         });
                         unwatch();
                     }

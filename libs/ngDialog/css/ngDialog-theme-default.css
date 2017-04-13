@@ -57,6 +57,7 @@
 .ngdialog.ngdialog-theme-default {
   padding-bottom: 160px;
   padding-top: 160px;
+  color: #444;
 }
 
 .ngdialog.ngdialog-theme-default.ngdialog-closing .ngdialog-content {

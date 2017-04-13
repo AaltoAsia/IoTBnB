@@ -153,6 +153,7 @@ max-width: 450px;
 
 .cart {
 	border:1px solid black;
+  color: black;
 }
 
 .container-popup {
@@ -221,5 +222,5 @@ xmp{
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+}
 
-  
