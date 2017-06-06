@@ -12,7 +12,6 @@ $vocabulary="";
 $data = file_get_contents("php://input");
 $dataJsonDecode = json_decode($data);
 if (isset($dataJsonDecode->location)){
-$location=$dataJsonDecode->location;
 $lat = $dataJsonDecode->location->lat;
 $long = $dataJsonDecode->location->long;
 $distance = $dataJsonDecode->location->distance;
@@ -27,8 +26,6 @@ if (isset($dataJsonDecode->vocabulary)){
 $vocabulary = $dataJsonDecode->vocabulary;
 }
 
-$tata=$dataJsonDecode->tata;
-$msg = array('stat' => 'es', 'msg' => 'test only !', 'val' => $tata);
 
 
 if (isset($location)){
@@ -46,7 +43,7 @@ curl_close($ch);
 $nbhits = $json->nhits;
 $result = $json->records;
 
-//$msg = array('stat' => 'es', 'msg' => 'test only !', 'val' => $location);
+//$msg = array('stat' => 'es', 'msg' => 'test only !', 'val' => $result);
 
 $array=[];
 for ($i=0;$i<$nbhits;$i++){
@@ -71,7 +68,7 @@ $arr[$i]= array('type' => $type, 'url' => $entireURL, 'price' => $price, 'reputa
 }
 
 $result=$arr;
-//$msg = array('results' => $result);
+$msg = array('results' => $result);
     
 }
 else

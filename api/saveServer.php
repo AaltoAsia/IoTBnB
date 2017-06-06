@@ -10,6 +10,10 @@ $username = $dataJsonDecode->username;
 $omiURL = $dataJsonDecode->omiURL;
 $omiName = $dataJsonDecode->omiName;
 $omiAddr = $dataJsonDecode->omiAddr;
+$secuUrl = $dataJsonDecode->secuUrl;
+$clientId = $dataJsonDecode->clientId;
+$clientSecret = $dataJsonDecode->clientSecret;
+
 
 $client = Elasticsearch\ClientBuilder::create()->build();
 
@@ -44,7 +48,10 @@ $params = [
         'doc' => [
             'omiURL' => $omiURL,
             'omiName' => $omiName,
-            'omiAddr' => $omiAddr
+            'omiAddr' => $omiAddr,
+            'secuUrl' => $secuUrl,
+            'clientId' => $clientId,
+            'clientSecret' => $clientSecret
         ]
     ]
 ];

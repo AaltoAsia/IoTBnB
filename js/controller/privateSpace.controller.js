@@ -23,6 +23,7 @@ vm.picture=authService.getPicture();
 
     //console.log("private"+vm.username)
 
+//console.log("omiURL"+vm.omiURL);
 vm.getExistingToken = function(username) {
       $http({
       method: 'POST',
@@ -62,6 +63,20 @@ vm.getExistingToken = function(username) {
   }
 
 
+vm.getIndexedServices = function(omiURL) {
+      //ADD the ODS domain & API Key in the following URL
+      var urlToODS = "https://biotope.opendatasoft.com/api/records/1.0/search/?dataset=<ODS domain>&apikey=<API Key>&rows=200&facet=path&q=url="+omiURL;
+      console.log(urlToODS);
+      $http({
+      method: 'GET',
+      url: urlToODS
+      }).then(function(response) {
+        console.log(response);
+          $scope.indexedServices=response.data.records;
+    });
+  }
+
+
 
     vm.getProfile = function(username) {
       $http({
@@ -74,6 +89,9 @@ vm.getExistingToken = function(username) {
             $scope.omiURL =response.data.omiURL;
             $scope.omiName =response.data.omiName;
             $scope.omiAddr =response.data.omiAddr;
+            $scope.secuUrl = response.data.secuUrl;
+            $scope.clientId=response.data.clientId;
+            $scope.clientSecret=response.data.clientSecret;
             $scope.rootUrl = response.data.omiURL;
             $scope.checkbox=true;
           }
@@ -88,18 +106,24 @@ vm.getExistingToken = function(username) {
 $timeout(function () {
     //$scope.userName2=authService.getNickname();
     //$scope.email=authService.getEmail();
-    //console.log(vm.nickname); 
+    //console.log(vm.nickname);
+    
     vm.getProfile(vm.nickname);
    vm.getExistingToken(vm.nickname);
-}, 300);
+   //vm.getIndexedServices($scope.omiURL);
+}, 600);
 
-//$timeout(function () {
-  //console.log($scope.omiURL);
+$timeout(function () {
+  console.log($scope.omiURL);
+
+  /* To modify: to do only when the users enters in the 'published data' page */
+  vm.getIndexedServices($scope.omiURL);
  //vm.getExistingOdfTree($scope.omiURL);
- //}, 600);
+ }, 700);
     
     $timeout(function () {
 //console.log($scope.omiURL);
+//console.log(vm.omiURL); 
  vm.saveProfile(vm.nickname,vm.email);
  }, 600);
 
@@ -137,11 +161,11 @@ vm.saveProfile = function(username, email) {
     });
   }
 
-$scope.saveServer = function(omiURL, omiName, omiAddr) {
+$scope.saveServer = function(omiURL, omiName, omiAddr, secuUrl, clientId, clientSecret) {
       $http({
       method: 'POST',
       url: 'api/saveServer.php',
-      data: {'username': vm.nickname, 'omiURL': omiURL, 'omiName': omiName, 'omiAddr': omiAddr}
+      data: {'username': vm.nickname, 'omiURL': omiURL, 'omiName': omiName, 'omiAddr': omiAddr, 'secuUrl': secuUrl, 'clientId': clientId, 'clientSecret': clientSecret}
       }).then(function(response) {
           if(response.data.stat==1){
             //$location.path("/member");

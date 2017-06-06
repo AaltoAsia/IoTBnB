@@ -72,18 +72,29 @@ console.log("iotbnb")
 
           $rootScope.currentUser=authService.getNickname();
 
-          console.log($rootScope.currentUser);
+          //console.log($rootScope.currentUser);
 
           localStorage.setItem('billing', false);
 
-
           $scope.cartTest = ngCart.getItems();
           $scope.username= authService.getNickname();
+
+          console.log(ngCart.getItems());
+
+          var arrayUrlOMInode = new Array();
+          for (var i = 0; i < ngCart.getItems().length ; i++) {
+            $scope.test=ngCart.getItems()[i]["_id"].split("/");
+            //$scope.urltest=$scope.test[0].concat('//').concat($scope.test[2]).concat('/').concat($scope.test[3]);
+            $scope.urltest=$scope.test[0].concat('//').concat($scope.test[2]);
+            arrayUrlOMInode[i]=$scope.urltest;
+          };
+          
+          console.log(arrayUrlOMInode);
           
           $http({
             method: 'POST',
-            url: 'api/getToken.php',
-            data: {'username': $rootScope.currentUser, 'items': ngCart.getItems()}
+            url: 'api/getToken2.php',
+            data: {'username': $rootScope.currentUser, 'items': ngCart.getItems(), 'urlOMI': arrayUrlOMInode}
             }).then(function(response) {
           if(response.data.stat==1){
           }

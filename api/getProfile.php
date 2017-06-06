@@ -23,7 +23,8 @@ if ($response["hits"]["total"] == 1)
 {
 $msg = array('stat' => '1', 'username' => $username, 'email' => $response["hits"]["hits"][0]["_source"]["email"],
   'omiURL' => $response["hits"]["hits"][0]["_source"]["omiURL"], 'omiName' => $response["hits"]["hits"][0]["_source"]["omiName"], 
-  'omiAddr' => $response["hits"]["hits"][0]["_source"]["omiAddr"], );
+  'omiAddr' => $response["hits"]["hits"][0]["_source"]["omiAddr"], 'secuUrl' => $response["hits"]["hits"][0]["_source"]["secuUrl"],
+            'clientId' => $response["hits"]["hits"][0]["_source"]["clientId"],'clientSecret' => $response["hits"]["hits"][0]["_source"]["clientSecret"] );
 }
 else {
 $err = 'Unknown account. Please, save your profile.';

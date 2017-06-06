@@ -50,10 +50,15 @@ angular.module('IoTBnB')
               };
               var rootId;
 
+              //To not have to put /Objects in the Server URL but only the main path 
+              $scope.rootUrl = $scope.rootUrl + '/Objects';
+              //console.log("RootId =" + rootId);
               if ($scope.rootUrl) {
-                rootId = $scope.rootUrl.split('/');
-                //ServerUrl = $scope.rootUrl.split('/Objects')[0];
-                rootId = rootId[rootId.length - 1];
+                //rootId = $scope.rootUrl.split('/');
+                  // //ServerUrl = $scope.rootUrl.split('/Objects')[0];
+                //rootId = rootId[rootId.length - 1];
+                rootId = "Objects";
+                console.log("RootId =" + rootId);
               }
 
               if (attrs.odfObject) {
