@@ -1,0 +1,34 @@
+dist: trusty
+sudo: required
+
+jdk:
+  - oraclejdk8
+
+language: node_js
+node_js:
+  - "iojs"
+
+addons:
+  sonarqube:
+    organization: "aaltoasia"
+    token:
+      secure: "xKF9q4Bj7yzQOZPZvZWABnkC9pQq/LbLUp9RWUeSMFHujBlYz+p1WuKDlb1lM0lcpJx8L755h3Wh7BP35mRKy9vtja9+fzYVAbk7ZexUq8A+edp4dkwBBuwhZozqqkCSGngjYjEMbUUS4ZQSm7tsIFSafmX/HcGolKOBEnRIB1uwJkaraxKy3jjfqxrO79+Ujm2hqhbtCL2JLc0ISg+CsD5hr66fo6ziA8H58c7WtR1cWrezaCPmuv07pc1BGlrd6807LDEuKyAcxvQz8dGuqsFJIPsrS3QHie9hN+U5PkD7/5arHyC1vXX1PK/z/VWZ3s4tl36BUaRH3RqXdnmHfmDpXyhEkNbMUINsJRFxC1/IfW1gR33vAQtDucn0WRYH08dWXYDrnsq0rsWC5ct1MX3I76T2tbOU2hOh2VwiSl5GkrZQ6itNUNgDmeL3NqEEnBy8/mgzjGLjdBwq3miaeK5HacwlmrbzEkaQnxXFbjWQv2R/bd1GqtyYcc4AUYBTHcWfp014gLqocIA/ELMbSfEod9mlrG+zRaAxd8zfCefOs3VZ6W8Xeo1PNj9gAq/4myblt2+mbBTBfwvszOygizfDNn1bvd0BMxmulbU6L8t7pj7SAAfzv4ndlImtstjdm/i2bP466qKB8azaL7KIjOUeCcI4F5tfVih7lLzf9yE="
+
+
+
+
+cache:
+  directories:
+    - bower_components
+    - '$HOME/.sonar/cache'
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install -g bower
+  - bower install
+
+script:
+  - sonar-scanner
