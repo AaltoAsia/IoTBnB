@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67fb0167bac44bca80cf959d3ed555af)](https://www.codacy.com/app/Jupeti10/IoTBnB?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AaltoAsia/IoTBnB&amp;utm_campaign=Badge_Grade)
+
 # Login
 
 This example shows how to add ***Login/SignUp*** to your application using the `Lock` widget.
