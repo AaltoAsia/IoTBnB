@@ -2,34 +2,22 @@
 //author: J. Robert
 //creation date: 01/03/2016
 //modified with: J. Morel (18/08/2016)
-//modification date: 05/09/2016
+//modification date: 03/07/2017
 -->
 
 <div class="container">
   <!--<a href="#/member">Member space</a>-->
    
-    <ods-dataset-context  context="iotbnb"  iotbnb-domain="{{odsDomain}}" iotbnb-apikey="{{odsKey}}"
-                       iotbnb-dataset="iotbnb-v2"
-                       >
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="https://biotope.opendatasoft.com/explore/dataset/iotbnb-v2/" 
-                   class="pull-right">
-                    Source data
-                </a>
+<ods-catalog-context context="biotope" biotope-domain="biotope" biotope-apikey="{{odsKey}}">
 
-                <h1 style="margin-top: 0">
-                    IoT BnB
-                </h1>    
-            </div>
-        </div>
-        
+    <!--<ods-result-enumerator context="biotope" biotope-domain="biotope" biotope-apikey="{{odsKey}}">
+        <p>{{item}}</p>
+    </ods-result-enumerator>-->
+        <h2>Keyword search</h2>
         <div class="row">
+            
             <div class="col-xs-12">
-                <ods-text-search placeholder="Search data..."
-                                 context="iotbnb"></ods-text-search>
+                <ods-text-search placeholder="Search IoT data/service..." context="biotope"></ods-text-search>
             </div>
         </div>
 
@@ -38,43 +26,26 @@
                 <div class="ods-box">
                     <div class="row">
                         <div class="col-xs-12">
-                            <ods-filter-summary context="iotbnb"></ods-filter-summary>
+                            <ods-filter-summary context="biotope"></ods-filter-summary>
                         </div>
                     </div>
                     
+                    <h2>Location search</h2>
                     <div class="row">
-                        <div class="col-sm-4">
-
-                            <ods-facets context="iotbnb">
-                                <h2>
-                                    Sensor type
-                                </h2>
-
-                                <ods-facet name="type" disjunctive="true"></ods-facet>
-                                <ods-collapsible>
-                                    <ods-collapsible-above-fold>
-                                        Unit
-                                    </ods-collapsible-above-fold>
-                                    <ods-collapsible-fold>
-                                        <ods-facet name="units" disjunctive="true"></ods-facet>
-                                    </ods-collapsible-fold>
-                                </ods-collapsible>
-                            </ods-facets>
+                        <div class="col-sm-2">
 
                         </div>
                         
                         <div class="col-sm-8">
-                            <h2>
-                                Location search
-                            </h2>
                             
-                            <ods-map style="height: 10%;">
-                                <ods-map-layer context="iotbnb" 
-                                               refine-on-click-context="iotbnb"
-                                               refine-on-click-iotbnb-map-field="type"
-                                               refine-on-click-iotbnb-context-field="type"></ods-map-layer>
+                            <ods-geo-search
+                                context="biotope">
+                            </ods-geo-search>
+                            <!--<ods-map style="height: 10%;">
+                                <ods-map-layer context="biotope" biotope-domain="biotope" biotope-apikey="{{odsKey}}">
+                                </ods-map-layer>
                           
-                            </ods-map>
+                            </ods-map>-->
                         </div>
                     </div>
                 </div>
@@ -83,7 +54,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    <h2>DATA SOURCES</h2>
+                    <h2>Available IoT data/service</h2>
 
 
 
@@ -91,50 +62,52 @@
      
                      <!--<ods-table context="iotbnb"></ods-table>-->       
                        <!--<ods-table context="iotbnb" displayed-fields="{TYPE,URL,PATH}"></ods-table>-->
-                      <h4>Only the 100 first entries are shown. To refine your selection, please use the filters </h4>
+                      <!--<h4>Only the 100 first entries are shown. To refine your selection, please use the filters </h4>-->
                       <div id="table-wrapper">
                         <!--<div id="table-scroll"> -->
                             <table ods-results="items"
-                                   ods-results-context="iotbnb"
+                                   ods-results-context="biotope"
                                    ods-results-max="15"
                                    show-hits-counter="false"
                                    style="width: 100%;"> 
                                    <!--<table ods-infinite-scroll-results="items" context="iotbnb">-->
                                 <tr> 
                                     
-
+                                    <!--<th>Id-Test</th>-->
                                     <th>Type</th>
-                                    <th>Root URL</th>
-                                    <th>OMI node Path</th>
-                                    <th style="text-align:center">Resource link</th>
+                                    <th>IoT data/service</th>
+                                    <!--<th>OMI node Path</th>-->
+                                    <!--<th style="text-align:center">Resource link</th>-->
                                     <th style="text-align:center">Price</th>
                                     <th style="text-align:center">Reputation</th>
-                                    <th style="text-align:center">Overview</th> <!-- Advanced Statistics -->
+                                    <!--<th style="text-align:center">Overview</th> <!-- Advanced Statistics -->
                                     <th></th>
                                 </tr>
-                                <tr ng-repeat="item in items">
-                                    <td>{{ item.fields.type }}</td>
+                                <tr ng-repeat="item in items" ng-if="item.metas.title!='iotbnb-v2'">
+                                    <!-- <td>{{ item.datasetid }}</td>    -->
+                                    <td>{{ item.metas.type }}</td>
                                     <td>
-                                        <a href="{{ item.fields.url }}" target="_blank">
+                                        {{item.metas.title}}
+                                        <!--<a href="{{ item.fields.url }}" target="_blank">
                                             {{ item.fields.url }}
-                                        </a>
+                                        </a>-->
                                     </td>
-                                    <td>
-                                        {{ item.fields.path }}
+                                    <!--<td>
+                                        {{ item.metas.path }}
                                     </td>
                                     <td style="text-align:center">
                                         <a href="{{ item.fields.url }}Objects/{{ item.fields.path }}" target="_blank">
                                             <i class="fa fa-external-link"></i>
                                         </a>
-                                    </td>
+                                    </td>-->
 
-                                    <td style="text-align:center"> {{ item.fields.price }} <!-- {{ priceItemInit }} -->
-                                       <span ng-if="item.fields.Billing==BTC"><i class="fa fa-btc" aria-hidden="true"></i></span>
+                                    <td style="text-align:center"> {{ item.metas.price }} <!-- {{ priceItemInit }} -->
+                                       <span ng-if="item.metas.Billing==BTC"><i class="fa fa-btc" aria-hidden="true"></i></span>
                                     </td>
 
                                     <td style="text-align:center">
 
-                                        <span ng-if="item.fields.reputation==0">
+                                        <span ng-if="item.metas.reputation==0">
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -142,7 +115,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                        <span ng-if="item.fields.reputation==1">
+                                        <span ng-if="item.metas.reputation==1">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -150,7 +123,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                         <span ng-if="item.fields.reputation==2">
+                                         <span ng-if="item.metas.reputation==2">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -158,7 +131,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                          <span ng-if="item.fields.reputation==3">
+                                          <span ng-if="item.metas.reputation==3">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -166,7 +139,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
                                                                                
-                                         <span ng-if="item.fields.reputation==4">
+                                         <span ng-if="item.metas.reputation==4">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -174,7 +147,7 @@
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                         </span>
 
-                                         <span ng-if="item.fields.reputation==5">
+                                         <span ng-if="item.metas.reputation==5">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -183,19 +156,19 @@
                                         </span>
                                     </td>
 
-                                    <td style="text-align:center">
+                                    <!--<td style="text-align:center">
                                         <a href="" ng-click="clickToOpen(item)"> 
                                             <i class="fa fa-line-chart" aria-hidden="true"></i>
                                         </a>
-                                    </td>
+                                    </td>-->
 
                                      <td>
-                                      <ngcart-addtocart id="{{ item.fields.url+'Objects/'+item.fields.path }}" name="{{ item.fields.url+'Objects/'+item.fields.path  }}" price="{{ item.fields.price }}" quantity="1" >Add to Cart</ngcart-addtocart>
+                                      <ngcart-addtocart id="{{ item.datasetid }}" name="{{ item.metas.title  }}" price="{{ item.metas.price }}" quantity="1" >Add to Cart</ngcart-addtocart>
                                     </td>
                                 </tr>
                             </table>
                             <ods-pagination-block
-                               context="iotbnb"
+                               context="biotope"
                                per-page="15"
                                nofollow="true">
                             </ods-pagination-block>
@@ -212,8 +185,11 @@
             </div>
         </div>
     </div>
+    
 
-    </ods-dataset-context>
+</ods-catalog-context>
+
+    
 </div>
 
 

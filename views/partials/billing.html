@@ -1,23 +1,24 @@
 <!-- Modal content -->
-<div class="modal-content" ng-controller="IoTBnBController">
+
+<div class="container">
+  <div class="modal-content" ng-controller="IoTBnBController">
   
   <div class="modal-header">
     <h2>Billing-as-a-Service</h2>
   </div>
 
   <div class="modal-body">
-
-    <div class="row">
-
-      <center><img src="img/Billing.png" alt="Billing-as-a-service" height="145" width="507"></center>
-
-      <h4>Your Tokens are available on <a ng-click="toMember()" >your Profile</a></h4>
-  
-
-  </div>
-  
+      <div class="row">
+      <h4>Before getting the data access information, you need to pay for. To do so, click on the following button for going on the payment website</a></h4>
+      <div class="last"><a ng-click="payOnBaaS()" class="btn">Go to payment website</a></div>
+      <!--<center><img src="img/Billing2.png" alt="Billing-as-a-service" width="50%"></center>-->
+      <!--<h4>Your data of interest (to pay per API call) are listed on <a ng-click="toMember()" >your Profile</a></h4>-->
+    </div>
   </div> 
-  <div class="modal-footer">
 
+  <div class="modal-footer">
   </div>  
+
+</div>
+
 </div>

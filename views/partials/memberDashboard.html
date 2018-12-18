@@ -11,7 +11,7 @@
     <!--Welcome to your private space !-->
 
 
-    <h4>Your Token: </h4>
+    <!-- <h4>Your Token: </h4>
     <div id="table-wrapper-token">
     <div id="table-scroll-token">
       <table style="width: 90%;">
@@ -24,6 +24,29 @@
           <td>{{ item.token }}</td>
         </tr>
         </table>  
+      -->
+
+      <div id="table-wrapper-token">
+        <table style="width: 95%;">
+          <tr> 
+          <th style="width: 30%;">Node URL</th>
+          <th style="width: 30%;">Purchased IoT data/service</th>
+          <th style="width: 10%;">Price</th>
+          <th style="width: 10%;">Number of API calls</th>
+          <th style="width: 20%;">Token (if needed)</th>
+          <!--<th style="text-align:center">Resource Link<th>-->
+        </tr>
+        <tr ng-repeat="item in RecordsPurchasedData">
+          <td>{{ item.nodeURL }}</td>
+          <td>{{ item.service }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.nbAPICalls }}</td>
+          <td style="text-align:center">{{ item.token }}<td>
+          <!--<td style="text-align:center"><a ng-click="getFullURL(item)"><i class="fa fa-external-link"></i></a></td>-->
+        </tr>
+
+        </table>  
+
 
 </div>
   </div>

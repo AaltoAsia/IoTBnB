@@ -11,18 +11,39 @@
 <div class="container">
   <div id="analytics">
 
-    <div class="col-md-6">
+    <div class="col-md-12">
        <span>Your available data:</span><br><br>
-       <sensor-tree2  id="sensor-tree">
-    </sensor-tree2>
+
+<div id="table-wrapper">
+  <table>
+    <tr>
+      <th>Service/Data</th>
+      <th>Price</th>
+      <th>Currency</th>
+      <th>Published?</th>
+    </tr>
+  <tbody ng-repeat="i in indexedServices">
+
+    <tr>
+      <td>{{ i.metas.title }}</td>
+      <td><textarea rows="1" cols="4" placeholder="{{ i.metas.price }}"></textarea>
+        <td><textarea rows="1" cols="4" placeholder="BTC"></textarea> <!--{{i.metas.billing}}-->
+      <td><input type="checkbox" ng-model="checkboxModel.value1" ng-init="checkboxModel.value1=true"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>
+<div class="last"><a ng-click="publish()" class="btn">Save Modifications</a></div><!--Publish Selected Data-->
+
+       <!--<sensor-tree2  id="sensor-tree"></sensor-tree2>-->
     </div>
 
-    <div class="col-md-6">
+    <!--<div class="col-md-6">
        <span>Your selected data to publish:</span><br><br>
-       <sensor-tree3 id="sensor-tree3">
-    </sensor-tree3><br><br><br>
+       <!--<sensor-tree3 id="sensor-tree3"></sensor-tree3><br><br><br>
     <div class="last"><a ng-click="publish()" class="btn">Publish Selected Data</a></div>
-    </div>
+    </div>-->
   </div>
 </div>
 </div>

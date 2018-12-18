@@ -29,7 +29,7 @@ $vocabulary = $dataJsonDecode->vocabulary;
 
 
 if (isset($location)){
-$url="https://biotope.opendatasoft.com/api/records/1.0/search/?dataset=iotbnb-v2&apikey=5677f3197edde5512e65fddbd752eca3056dee9e9693930f18bbb38f&rows=200&facet=path&geofilter.distance=".$lat."%2C".$long."%2C".$distance;
+$url="https://biotope.opendatasoft.com/api/records/1.0/search/?dataset=iotbnb-v2&apikey=<API_KEY/TOKEN>&rows=200&facet=path&geofilter.distance=".$lat."%2C".$long."%2C".$distance;
 
 //Get the service description (in the ODS) based only on the location 
 $ch = curl_init($url);

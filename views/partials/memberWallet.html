@@ -16,8 +16,11 @@
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
             <input class="form-control" type="text" name='omi-url' placeholder="Bitcoin Wallet's address " ng-model="wallet"/> <!--ng-model="-"-->    
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: If you have already a wallet address on the LN technology, please filled out this field with your wallet address. If not please create your wallet with our billing service by clicking on Create Wallet. The address will serve for paying the access to your data (validation will be made by the billing module that you need to install for receiving digital money)."><i class="fa fa-info-circle"></i></span>
           </div>
-          <div class="last"><a ng-click="" class="btn">Save</a></div>
+          <div class="last">
+            <a ng-click="createWallet()" class="btn">Create Wallet</a> 
+            <a ng-click="saveWallet(wallet)" class="btn">Save</a></div>
         </form> 
       </div> 
 

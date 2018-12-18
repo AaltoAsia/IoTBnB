@@ -61,10 +61,15 @@ console.log("iotbnb")
         $scope.openBilling = function() {
         //localStorage.billing = true;
         localStorage.setItem('billing', true);
+
+          $rootScope.cartTest = ngCart.getItems();
+          $scope.username= authService.getNickname();
+
         //ngDialog.close("openCart");
         //$location.url("/billing")
         $state.go('billing')
       };
+
        
         $scope.toMember = function() {
           //ngDialog.close("openBilling");
@@ -82,21 +87,29 @@ console.log("iotbnb")
           console.log(ngCart.getItems());
 
           var arrayUrlOMInode = new Array();
+          var arrayHID = new Array();
           for (var i = 0; i < ngCart.getItems().length ; i++) {
             $scope.test=ngCart.getItems()[i]["_id"].split("/");
             //$scope.urltest=$scope.test[0].concat('//').concat($scope.test[2]).concat('/').concat($scope.test[3]);
             $scope.urltest=$scope.test[0].concat('//').concat($scope.test[2]);
             arrayUrlOMInode[i]=$scope.urltest;
+
+            $scope.hidCut=ngCart.getItems()[i]["_id"].split("Objects");
+            $scope.obj="Objects";
+            $scope.hid=$scope.obj.concat($scope.hidCut[1]);
+            arrayHID[i]=$scope.hid;
           };
           
           console.log(arrayUrlOMInode);
+          console.log(arrayHID);
           
           $http({
             method: 'POST',
-            url: 'api/getToken2.php',
-            data: {'username': $rootScope.currentUser, 'items': ngCart.getItems(), 'urlOMI': arrayUrlOMInode}
+            url: 'api/savePurchasedData.php',
+            data: {'username': $rootScope.currentUser, 'items': ngCart.getItems(), 'urlOMI': arrayUrlOMInode, 'hid': arrayHID}
             }).then(function(response) {
           if(response.data.stat==1){
+            //$rootScope.RecordsPurchasedData = response.data.idPurchasedData;
           }
           else {
             var msg= " "+response.data.msg;
@@ -104,7 +117,23 @@ console.log("iotbnb")
           }
           })
 
-$timeout(function () {
+            $timeout(function () {
+            $http({
+            method: 'POST',
+            url: 'api/getPurchasedData.php',
+            data: {'username': $rootScope.currentUser}
+            }).then(function(response) {
+          if(response.data.stat==1){
+            $rootScope.RecordsPurchasedData = response.data.idPurchasedData;
+          }
+          else {
+            var msg= " "+response.data.msg;
+            $window.alert(msg);
+          }
+          });
+            }, 1000);
+
+/*$timeout(function () {
            $http({
       method: 'POST',
       url: 'api/getExistingToken.php',
@@ -117,7 +146,7 @@ $timeout(function () {
           }
 
     }); 
-    }, 1000);
+    }, 1000);*/
 
           $state.go('memberDashboard');
           //$location.url('/memberDashboard');

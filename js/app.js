@@ -91,7 +91,7 @@
       })
            .state('billing', {
         url: '/billing',
-        controller: 'PageCtrl',
+        controller: 'PrivateSpaceController',
         templateUrl: 'views/partials/billing.html',
         controllerAs: 'vm',
         redirectUrl: 'billing'

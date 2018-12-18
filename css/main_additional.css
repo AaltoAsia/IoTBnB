@@ -113,27 +113,39 @@ max-width: 450px;
 
 #table-wrapper-token {
   position:relative;
+  word-wrap: break-word;
 }
 #table-scroll-token {
   height:600px;
   overflow-x:hidden;  
   margin-top:20px;
   word-wrap: break-word;
-
+ -webkit-hyphens: auto;
+ -moz-hyphens: auto;
+ -ms-hyphens: auto;
+ -o-hyphens: auto;
+ hyphens: auto;
 }
 #table-wrapper-token table {
   width:100%;
-    
+  word-wrap: break-word;
+   -webkit-hyphens: auto;
+ -moz-hyphens: auto;
+ -ms-hyphens: auto;
+ -o-hyphens: auto;
+ hyphens: auto;
 }
 
 #table-wrapper-token td, th {
 padding: 0px 5px;
 max-width: 450px; 
+word-wrap: break-word;
     }
 
 #table-wrapper-token table * {
   background:white;
   color:black;
+  word-wrap: break-word;
 }
 #table-wrapper-token table thead th .text {
   position:absolute;   
@@ -141,6 +153,7 @@ max-width: 450px;
   z-index:2;
   height:20px;
   width:35%;
+  word-wrap: break-word;
 }
 
 

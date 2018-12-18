@@ -1,4 +1,50 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67fb0167bac44bca80cf959d3ed555af)](https://www.codacy.com/app/Jupeti10/IoTBnB?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AaltoAsia/IoTBnB&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/AaltoAsia/IoTBnB.svg?branch=master)](https://travis-ci.org/AaltoAsia/IoTBnB) [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=IoTBnB)](https://sonarcloud.io/dashboard?id=IoTBnB)
+# Before using this marketplace, the user needs to either contract with OpenDataSoft platform for the indexing & storage component or develop his/her own component by him/herself.
+
+Let us note that this website as also a local MySQL database.
+
+Once contracting with OpenDataSoft and once the MySQL database is running, the user needs to update the following files with API Key or credentials:
+
+        Add OpenDataSoft (ODS) Api Key or token :
+
+          In api/indexing.php:
+            line 32: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 66: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 108: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 138: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 169: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 206: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 241: 'api_key' => '<API_KEY/TOKEN>',
+            line 253: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 302: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 332: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 363: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 394: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 423: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 448: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 473: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 504: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 681: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
+            line 32 (URL can be changed when contracting with ODS): $url="https://biotope.opendatasoft.com/api/records/1.0/search/?dataset=iotbnb-v2&apikey=<API_KEY/TOKEN>&rows=200&facet=path&geofilter.distance=".$lat."%2C".$long."%2C".$distance;
+
+          In js/controller/dashboard.controller.js:
+            line 24: var urlToODS = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&q=title="+item.dataURL;
+          In js/controller/privateSpace.controller.js:
+                  line 107: var urlToODS = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&rows=1000&q=omi-node-url="+omiURL;
+                        line 231: var urlToGetURL = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&q=datasetid="+service;
+                    line 382 (API KEY FROM BAAS Component - URL of the component can be changed in a near future): var urlToGetInvoiceToken ="http://api-token:<API_KEY/TOKEN>@baas.serval.uni.lu/invoice"
+            line 402 (- URL of the component can be changed in a near future): var domain="http://baas-gui.uni.lu:8081";
+
+
+        Add OpenDataSoft login/password:
+          In indexing.php:
+            line 593: curl_setopt($curl,CURLOPT_POSTFIELDS,"username=".urlencode("<email>")."&password=".urlencode("<password>")."&next=".urlencode("/explore/"));
+
+
+        Credentials to be added:
+          for ODS:
+            In js/ods-variables.js
+          for auth0 authentication service:
+            In js/auth0-variables.js
 
 
 # Login

@@ -1,36 +1,55 @@
 <?php
 //author: J. Robert
 //creation date: 01/03/2016
-//modification date: 18/08/2016 
-require 'vendor/autoload.php';
+//modification date: 07/06/2017
+
 $data = file_get_contents("php://input");
 $dataJsonDecode = json_decode($data);
 $username = $dataJsonDecode->username;
-$client = Elasticsearch\ClientBuilder::create()->build();
-$params = [
-    'index' => 'iotbnb',
-    'type' => 'users',
-    'body' => [
-        'query' => [
-            'match' => [
-                'username' => $username
-            ]
-        ]
-    ]
-];
-$response = $client->search($params);
-if ($response["hits"]["total"] == 1)
-{
-$msg = array('stat' => '1', 'username' => $username, 'email' => $response["hits"]["hits"][0]["_source"]["email"],
-  'omiURL' => $response["hits"]["hits"][0]["_source"]["omiURL"], 'omiName' => $response["hits"]["hits"][0]["_source"]["omiName"], 
-  'omiAddr' => $response["hits"]["hits"][0]["_source"]["omiAddr"], 'secuUrl' => $response["hits"]["hits"][0]["_source"]["secuUrl"],
-            'clientId' => $response["hits"]["hits"][0]["_source"]["clientId"],'clientSecret' => $response["hits"]["hits"][0]["_source"]["clientSecret"] );
+
+if($username){
+include './credentials/db.php';
+
+$conn = mysqli_connect($servernameDB,$usernameDB,$passwordDB,$dbname);
+
+//mysql_connect($servernameDB,$usernameDB,$passwordDB);
+
+//mysql_select_db($dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-else {
-$err = 'Unknown account. Please, save your profile.';
-$msg = array('stat' => '0', 'msg' => $err);
+
+  $sql = 'SELECT * FROM `OmiServer` WHERE `id_user`=(SELECT `id` FROM `User` WHERE `login`="'.$username.'")';
+  //$result = mysql_query($sql);
+  $result = mysqli_query($conn, $sql);
+
+$msg=array();
+if ($result) {
+  // output data of each row
+  //while ($row = mysql_fetch_assoc($result)) {
+  while ($row = $result->fetch_assoc()) {
+
+    $msg = array('stat' => '1', 'username' => $username, 'omiURL' => $row["url"], 'omiName' => $row["name"], 'omiAddr' => $row["address"], 'themes' => $row["themes"],
+      'secuUrl' => $row["secuUrl"],'clientId' => $row["clientId"],'clientSecret' => $row["clientSecret"], 'omiVersion' => $row["version"], 'billingUrl' => $row["billingUrl"]);
+  }
+    // $msg[] = array('stat' => '1','msg' => $row["email"]);
 }
+  else {
+  $err = 'Database unreachable ';
+  $msg = array('stat' => '0', 'msg' => $err);
+  //echo "0 results";
+  }
+
+
+//mysql_close();
+ mysqli_close($conn);
+
 $json = $msg;
+
+//echo 'toto';
 header('content-type: application/json');
 echo json_encode($json);
+}
 ?>

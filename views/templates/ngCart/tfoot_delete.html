@@ -1,0 +1,26 @@
+<tfoot>
+        <tr ng-show="ngCart.getTax()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Tax ({{ ngCart.getTaxRate() }}%):</td>
+            <!-- <td>{{ ngCart.getTax() | currency }}</td> -->
+            <td>{{ ngCart.getTax() }} <i class="fa fa-btc" aria-hidden="true"></i></td>
+        </tr>
+        <tr ng-show="ngCart.getShipping()">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Shipping:</td>
+            <!-- <td>{{ ngCart.getShipping() | currency }}</td> -->
+            <td>{{ ngCart.getShipping() }} <i class="fa fa-btc" aria-hidden="true"></i></td> 
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <!-- <td>{{ ngCart.totalCost() | currency }}</td> -->
+            <td>{{ ngCart.totalCost() }} <i class="fa fa-btc" aria-hidden="true"></i></td> 
+        </tr>
+        </tfoot>

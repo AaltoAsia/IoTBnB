@@ -3,35 +3,121 @@
 //creation date: 09/09/2016
 //modification date: 09/09/2016
 -->
+
+<div class="container">
 <div class="row">
 
   <div class="col-sm-12">
   	<div class="container">
     <!--Welcome to your private space !-->
 
-<div class="container-login">
+      <div class="container-login">
         <form id="loginForm" >
                     <!--<h5>toto : {{redirectModeProfile.nickname}}</h5>-->
-          <h5>Server information</h5>  
+          <h4>Server information</h4>  
+          <h5><i>hover over <i class="fa fa-info-circle"></i> for more information about the field to fill out</i></h5>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <input class="form-control" type="text" name='omi-url' placeholder="Server's url (O-MI node)" ng-model="omiURL"/> <!--ng-model="-"-->    
+            <input class="form-control" type="text" name='omi-url' placeholder="Server's url (O-MI node)" ng-model="omiURL" />
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the URL (or the public IP address) of your O-MI node, e.g. http://myominode.com:8080/"><i class="fa fa-info-circle"></i></span>
+
+            <!--<i class="fa fa-info-circle" aria-hidden="true"></i>-->
+             <!--ng-model="-"-->    
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <input class="form-control" type="text" name='omi-name' placeholder="Server's name" ng-model="omiName"/>     
+            <input class="form-control" type="text" name='omi-name' placeholder="Server's name" ng-model="omiName"/>  
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give a name of your O-MI node needed for the indexing process; do not use space or special character"><i class="fa fa-info-circle"></i></span>   
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-            <input class="form-control" type="text" name='omi-add' placeholder="Server's address" ng-model="omiAddr"/>     
+            <input class="form-control" type="text" name='omi-add' placeholder="Server's address" ng-model="omiAddr"/>
+            <span class="input-group-addon" data-toggle="tooltip" title="OPTIONAL FIELD: Give the location of your O-MI node, e.g. Metz, France"><i class="fa fa-info-circle"></i></span>        
           </div>
-          <div class="last"><a ng-click="saveServer(omiURL, omiName, omiAddr)" class="btn">Save</a></div>
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-version' placeholder="Server's version" ng-model="omiVersion"/> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the verion of your O-MI node, e.g. 0.9.2. Version can be found at the top (left) of the web page of your O-MI node"><i class="fa fa-info-circle"></i></span>     
+          </div>
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-themes' placeholder="Server's INSPIRE themes" ng-model="themes"/>
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give a keyword (or INSPIRE theme) representing most of your data published by your O-MI node, e.g. mobility, environment, ..."><i class="fa fa-info-circle"></i></span>     
+          </div>
+          <!--<div class="last"><a ng-click="testFunction(omiName)" class="btn">TestFunction</a>
+          </div>-->
+           <label for="AuthenticationSelect">Authentication: </label>
+          <select name="AuthenticationSelect" id="AuthenticationSelect" ng-model="AuthenticationSelect">
+            <option value="">no authentication</option>
+            <option value="basic">basic authentication</option>
+            <option value="bearer">bearer authentication</option>
+          </select>
+
+          <h5 ng-show="AuthenticationSelect=='basic'">basic authentication information</h5> 
+           <div class="form-group input-group" ng-show="AuthenticationSelect=='basic'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='basicLogin' placeholder="login of the basic authentication" ng-model="basicLogin"/> <!--ng-model="-"--> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the login enabling to be authenticated on the node"><i class="fa fa-info-circle"></i></span>
+          </div>
+          <div class="form-group input-group" ng-show="AuthenticationSelect=='basic'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='basicPWD' placeholder="password of the basic authentication" ng-model="basicPWD"/> <!--ng-model="-"--> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the password enabling to be authenticated on the node"><i class="fa fa-info-circle"></i></span>
+          </div>
+
+          <h5 ng-show="AuthenticationSelect=='bearer'">bearer authentication information</h5> 
+           <div class="form-group input-group" ng-show="AuthenticationSelect=='bearer'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='bearerToken' placeholder="token of the bearer authentication" ng-model="bearerToken"/> <!--ng-model="-"--> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the token enabling to be authenticated on the node"><i class="fa fa-info-circle"></i></span>
+          </div>
+
+          <br>
+          <label for="singleSelect">Optional Module: </label>
+          <select name="singleSelect" id="singleSelect" ng-model="singleSelect">
+            <option value="">no additionnal module</option>
+            <option value="secu">security module v1 (obsolete)</option>
+            <!--<option value="secuV2">security module v2</option>-->
+            <option value="billing">billing module</option>
+          </select>
+
+          <h5 ng-show="singleSelect=='secu'">Security module v1 information</h5> 
+           <div class="form-group input-group" ng-show="singleSelect=='secu'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-secuurl' placeholder="Security module's url (O-MI node)" ng-model="secuUrl"/> <!--ng-model="-"--> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the URL (or the public IP address) of your O-MI node, e.g. http://myominode.com:8089/. The port for accessing the secured interface differe of the main default interface filled out in the first field (check your config file for more information)"><i class="fa fa-info-circle"></i></span>
+          </div>
+          <div class="form-group input-group" ng-show="singleSelect=='secu'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-clientId' placeholder="Client id" ng-model="clientId"/> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the client ID specified in the config file of your O-MI node"><i class="fa fa-info-circle"></i></span>    
+          </div>
+          <div class="form-group input-group" ng-show="singleSelect=='secu'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-secret' placeholder="Client Secret" ng-model="clientSecret"/> 
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the client secret specified in the config file of your O-MI node"><i class="fa fa-info-circle"></i></span>        
+          </div>
+
+           <!--<h5 ng-show="singleSelect=='secuV2'">Security module v2 information</h5> 
+          <div class="form-group input-group" ng-show="singleSelect=='secuV2'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-tokenSecV2' placeholder="Token (if needed)" ng-model="tokenSecV2"/> 
+            <span class="input-group-addon" data-toggle="tooltip" title="Give the token created specifically for the indexing process if needed"><i class="fa fa-info-circle"></i></span>    
+          </div>-->
+
+          <h5 ng-show="singleSelect=='billing'">Billing module information</h5> 
+          <h5 ng-show="singleSelect=='billing'"><a href="http://iotbnb.jeremy-robert.fr/Download/OMIBillingModule.jar" target="_blank"><i class="fa fa-download"></i> Download Billing Module to run on the O-MI node/server</a> <i class="fa fa-info-circle" data-toggle="tooltip" title="For using this billing module, you need to run it by executing in a terminal the following command: java -jar OMIBillingModule.jar "></i></h5>
+           <div class="form-group input-group" ng-show="singleSelect=='billing'">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+            <input class="form-control" type="text" name='omi-billingUrl' placeholder="Billing module's url (O-MI node)" ng-model="billingUrl"/> <!--ng-model="-"-->
+            <span class="input-group-addon" data-toggle="tooltip" title="MANDATORY FIELD: Give the URL (or the public IP address) of your O-MI node, e.g. http://myominode.com:8083/. The port for accessing the secured interface for billing differe of the main default interface filled out in the first field (check your config file for more information)"><i class="fa fa-info-circle"></i></span>    
+          </div>
+          <div class="last"><a ng-click="saveServer(omiURL, omiName, omiAddr, themes, secuUrl, clientId, clientSecret, omiVersion, billingUrl)" class="btn">Save</a>
+          </div>
         </form> 
+          <br><br><br><br><br><br><br><br><br><br>
       </div> 
-
-
-
-
 </div>
   </div>
+    </div>
 </div>
