@@ -1,6 +1,8 @@
 # Before using this marketplace, the user needs to either contract with OpenDataSoft platform for the indexing & storage component or develop his/her own component by him/herself.
 
+
 Let us note that this website as also a local MySQL database.
+
 
 Once contracting with OpenDataSoft and once the MySQL database is running, the user needs to update the following files with API Key or credentials:
 
