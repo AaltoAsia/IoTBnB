@@ -1,79 +1,41 @@
-# Before using this marketplace, the user needs to either contract with OpenDataSoft platform for the indexing & storage component or develop his/her own component by him/herself.
+# bIoTope IoTBnB
 
+This repository contains the source code of the marketplace/service catalog component of the bIoTope ecosystem. 
 
-Let us note that this website as also a local MySQL database.
+## Description
 
+IoTBnB (**IoT** service pu**B**lication and **B**illing) is a developed as a marketplace that serves as a service catalogue within the bIoTope ecosystem. This marketplace was developed as a means to assist the two stakeholders of the ecosystem: IoT data/service produces/publishers and IoT data/service consumers. The marketplace permits searching and consumption of IoT generated data streams or services with potentially the objective to re-use them.
 
-Once contracting with OpenDataSoft and once the MySQL database is running, the user needs to update the following files with API Key or credentials:
+## Getting started
 
-        Add OpenDataSoft (ODS) Api Key or token :
+The implementation makes use of OpenDataSoft platform for the indexing and storage of the data items. As such, using this implementation in its current state requires the user to have usage agreement with OpenDataSoft or the user needs to develop their own component for such indexing and storage. The instructions assume that the user is using the OpenDataSoft platform.
 
-          In api/indexing.php:
-            line 32: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 66: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 108: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 138: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 169: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 206: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 241: 'api_key' => '<API_KEY/TOKEN>',
-            line 253: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 302: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 332: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 363: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 394: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 423: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 448: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 473: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 504: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 681: $authorization = "Authorization: Basic <API_KEY/TOKEN>";
-            line 32 (URL can be changed when contracting with ODS): $url="https://biotope.opendatasoft.com/api/records/1.0/search/?dataset=iotbnb-v2&apikey=<API_KEY/TOKEN>&rows=200&facet=path&geofilter.distance=".$lat."%2C".$long."%2C".$distance;
+### Prerequisites
 
-          In js/controller/dashboard.controller.js:
-            line 24: var urlToODS = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&q=title="+item.dataURL;
-          In js/controller/privateSpace.controller.js:
-                  line 107: var urlToODS = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&rows=1000&q=omi-node-url="+omiURL;
-                        line 231: var urlToGetURL = "https://biotope.opendatasoft.com/api/datasets/1.0/search/?apikey=<API_KEY/TOKEN>&q=datasetid="+service;
-                    line 382 (API KEY FROM BAAS Component - URL of the component can be changed in a near future): var urlToGetInvoiceToken ="http://api-token:<API_KEY/TOKEN>@baas.serval.uni.lu/invoice"
-            line 402 (- URL of the component can be changed in a near future): var domain="http://baas-gui.uni.lu:8081";
+The implemented website also has a local MySQL database which needs to installed on the machine. Once the database is up and running, the user needs to configure the API key and the credentials within the code as mentioned in the CREDENTIALS.md.
 
+### Installation
 
-        Add OpenDataSoft login/password:
-          In indexing.php:
-            line 593: curl_setopt($curl,CURLOPT_POSTFIELDS,"username=".urlencode("<email>")."&password=".urlencode("<password>")."&next=".urlencode("/explore/"));
-
-
-        Credentials to be added:
-          for ODS:
-            In js/ods-variables.js
-          for auth0 authentication service:
-            In js/auth0-variables.js
-
-
-# Login
-
-This example shows how to add ***Login/SignUp*** to your application using the `Lock` widget.
-
-You can read a quickstart for this sample [Angular 1.x Quickstart](https://auth0.com/docs/quickstart/spa/angularjs/01-login). 
-
-## Getting Started
-
-To run this quickstart you can fork and clone this repo.
-
-Be sure to set the correct values for your Auth0 application in the `auth0.variables.js` file.
-
-To run the application:
+To have the instance of IoTBnB running is easy. First clone the repo and set the correct Auth0 values in the file `js/auth0.variables.js`. Now, make sure to install the dependencies of the code using the following:
 
 ```bash
-# Install the dependencies
 bower install
-
-# Install simple web server
 npm install -g serve
-
-# Run
-serve
 ```
 
+That’s it, now a simple `serve` would get the website up and running locally on port 5000.
+
+## bIoTope integration
+The IoTBnB is integrated with the Billing-as-a-Service, Security-as-a-Service components of the bIoTope ecosystem.
+
+## Authors
+@jrobert-github
+
+## License
+This project is licensed under the ??? - see the LICENSE.md file for details.
+
+## Acknowledgments
+This project has been developed as part of the bIoTope Project, which has received funding from the European Union’s Horizon 2020 Research and Innovation Programme under grant agreement No. 688203.
 
 ## Important Snippets
 
@@ -83,37 +45,37 @@ serve
 // app.js
 (function () {
 
-  'use strict';
+'use strict';
 
-  angular
-    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router'])
-    .config(config);
+angular
+.module('app', ['auth0.lock', 'angular-jwt', 'ui.router'])
+.config(config);
 
-  config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider', 'lockProvider', '$urlRouterProvider'];
 
-  function config($stateProvider, lockProvider, $urlRouterProvider) {
+function config($stateProvider, lockProvider, $urlRouterProvider) {
 
-    $stateProvider
-      .state('home', {
-        url: '/home',
-        controller: 'HomeController',
-        templateUrl: 'components/home/home.html',
-        controllerAs: 'vm'
-      })
-      .state('login', {
-        url: '/login',
-        controller: 'LoginController',
-        templateUrl: 'components/login/login.html',
-        controllerAs: 'vm'
-      });
+$stateProvider
+.state('home', {
+url: '/home',
+controller: 'HomeController',
+templateUrl: 'components/home/home.html',
+controllerAs: 'vm'
+})
+.state('login', {
+url: '/login',
+controller: 'LoginController',
+templateUrl: 'components/login/login.html',
+controllerAs: 'vm'
+});
 
-    lockProvider.init({
-      clientID: AUTH0_CLIENT_ID,
-      domain: AUTH0_DOMAIN
-    });
+lockProvider.init({
+clientID: AUTH0_CLIENT_ID,
+domain: AUTH0_DOMAIN
+});
 
-    $urlRouterProvider.otherwise('/home');
-  }
+$urlRouterProvider.otherwise('/home');
+}
 
 })();
 ```
@@ -122,26 +84,26 @@ serve
 // app.run.js
 (function () {
 
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .run(run);
+angular
+.module('app')
+.run(run);
 
-  run.$inject = ['$rootScope', 'authService', 'lock'];
+run.$inject = ['$rootScope', 'authService', 'lock'];
 
-  function run($rootScope, authService, lock) {
-    // Put the authService on $rootScope so its methods
-    // can be accessed from the nav bar
-    $rootScope.authService = authService;
+function run($rootScope, authService, lock) {
+// Put the authService on $rootScope so its methods
+// can be accessed from the nav bar
+$rootScope.authService = authService;
 
-    // Register the authentication listener that is
-    // set up in auth.service.js
-    authService.registerAuthenticationListener();
+// Register the authentication listener that is
+// set up in auth.service.js
+authService.registerAuthenticationListener();
 
-    // Register the synchronous hash parser
-    lock.interceptHash();
-  }
+// Register the synchronous hash parser
+lock.interceptHash();
+}
 
 })();
 ```
@@ -152,43 +114,43 @@ serve
 // components/auth/auth.service.js
 (function () {
 
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .service('authService', authService);
+angular
+.module('app')
+.service('authService', authService);
 
-  authService.$inject = ['lock', 'authManager'];
+authService.$inject = ['lock', 'authManager'];
 
-  function authService(lock, authManager) {
+function authService(lock, authManager) {
 
-    function login() {
-      lock.show();
-    }
+function login() {
+lock.show();
+}
 
-    // Logging out just requires removing the user's
-    // id_token and profile
-    function logout() {
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('profile');
-      authManager.unauthenticate();
-    }
+// Logging out just requires removing the user's
+// id_token and profile
+function logout() {
+localStorage.removeItem('id_token');
+localStorage.removeItem('profile');
+authManager.unauthenticate();
+}
 
-    // Set up the logic for when a user authenticates
-    // This method is called from app.run.js
-    function registerAuthenticationListener() {
-      lock.on('authenticated', function (authResult) {
-        localStorage.setItem('id_token', authResult.idToken);
-        authManager.authenticate();
-      });
-    }
+// Set up the logic for when a user authenticates
+// This method is called from app.run.js
+function registerAuthenticationListener() {
+lock.on('authenticated', function (authResult) {
+localStorage.setItem('id_token', authResult.idToken);
+authManager.authenticate();
+});
+}
 
-    return {
-      login: login,
-      logout: logout,
-      registerAuthenticationListener: registerAuthenticationListener
-    }
-  }
+return {
+login: login,
+logout: logout,
+registerAuthenticationListener: registerAuthenticationListener
+}
+}
 })();
 ```
 
@@ -197,20 +159,20 @@ serve
 ```js
 // components/login/login.controller.js
 (function () {
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .controller('LoginController', LoginController);
+angular
+.module('app')
+.controller('LoginController', LoginController);
 
-  LoginController.$inject = ['authService'];
+LoginController.$inject = ['authService'];
 
-  function LoginController(authService) {
+function LoginController(authService) {
 
-    var vm = this;
-    vm.authService = authService;
+var vm = this;
+vm.authService = authService;
 
-  }
+}
 
 }());
 ```
@@ -220,11 +182,11 @@ serve
 ```html
 <!-- components/login/login.html -->
 <div class="jumbotron">
-  <h2 class="text-center"><img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"></h2>
-  <h2 class="text-center">Login</h2>
-  <div class="text-center">
-    <button class="btn btn-primary" ng-click="vm.authService.login()">Log In</button>
-  </div>
+<h2 class="text-center"><img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"></h2>
+<h2 class="text-center">Login</h2>
+<div class="text-center">
+<button class="btn btn-primary" ng-click="vm.authService.login()">Log In</button>
+</div>
 </div>
 ```
 
@@ -234,20 +196,20 @@ serve
 // components/home/home.controller.js
 (function () {
 
-  'use strict';
+'use strict';
 
-  angular
-    .module('app')
-    .controller('HomeController', HomeController);
+angular
+.module('app')
+.controller('HomeController', HomeController);
 
-  HomeController.$inject = ['authService'];
+HomeController.$inject = ['authService'];
 
-  function HomeController(authService) {
+function HomeController(authService) {
 
-    var vm = this;
-    vm.authService = authService;
+var vm = this;
+vm.authService = authService;
 
-  }
+}
 
 }());
 ```
@@ -257,14 +219,15 @@ serve
 ```html
 <!-- components/home/home.html -->
 <div class="jumbotron">
-  <h2 class="text-center"><img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"></h2>
-  <h2 class="text-center">Home</h2>
-  <div class="text-center" ng-if="!isAuthenticated">
-    <p>You are not yet authenticated. <a href="#/login">Log in.</a></p>
-  </div>
-  <div class="text-center" ng-if="isAuthenticated">
-    <p>Thank you for logging in! <a href="javascript:;" ng-click="vm.authService.logout()">Log out.</a></p>
-  </div>
+<h2 class="text-center"><img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg"></h2>
+<h2 class="text-center">Home</h2>
+<div class="text-center" ng-if="!isAuthenticated">
+<p>You are not yet authenticated. <a href="#/login">Log in.</a></p>
+</div>
+<div class="text-center" ng-if="isAuthenticated">
+<p>Thank you for logging in! <a href="javascript:;" ng-click="vm.authService.logout()">Log out.</a></p>
+</div>
 </div>
 
 ```
+
